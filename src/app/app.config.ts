@@ -6,6 +6,8 @@ import { routes } from './app.routes';
 import Aura from '@primeuix/themes/aura';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
+import { provideSweetAlert2 } from '@sweetalert2/ngx-sweetalert2';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,6 +18,12 @@ export const appConfig: ApplicationConfig = {
       theme: {
         preset: Aura,
       },
+    }),
+    provideHttpClient(),
+    provideSweetAlert2({
+      // Optional configuration
+      fireOnInit: false,
+      dismissOnDestroy: true,
     }),
   ],
 };

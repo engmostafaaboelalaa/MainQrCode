@@ -1,113 +1,112 @@
 <div class="main-page">
-    <div class="container">
-        <div class="main-content mt-5">
-            <div class="header text-center">
-                <h1 class="text-primary">M.M</h1>
-                <h3 class="mt-2 mb-2 ">شركة إنتاج برمجة</h3>
-                <p class="fs-1">M.M Group</p>
-            </div>
-            <div class="content">
-                <!-- 1. Mobile -->
-                <div class="contact w-100 bg-white p-3 rounded-3 d-flex gap-3 align-items-center mb-3">
-                    <div class="image">
-                        <a class="btn btn-light rounded-circle shadow-sm p-3">
-                            <i class="bi bi-phone-fill text-success"></i>
-                        </a>
-                    </div>
-                    <div class="data d-flex flex-column justify-content-center gap-1">
-                        <p class="text-primary m-0">Mobile</p>
-                        <p class="m-0">إتصل بي</p>
-                    </div>
-                </div>
-                <!-- 2. Telephone -->
-                <div class="contact w-100 bg-white p-3 rounded-3 d-flex gap-3 align-items-center mb-3">
-                    <div class="image">
-                        <a class="btn btn-light rounded-circle shadow-sm p-3">
-                            <i class="bi bi-telephone-fill text-primary"></i>
-                        </a>
-                    </div>
-                    <div class="data d-flex flex-column justify-content-center gap-1">
-                        <p class="text-primary m-0">Telephone</p>
-                        <p class="m-0">إتصل بي</p>
-                    </div>
-                </div>
-                <!-- 3. WhatsApp -->
-                <div class="contact w-100 bg-white p-3 rounded-3 d-flex gap-3 align-items-center mb-3">
-                    <div class="image">
-                        <a class="btn btn-light rounded-circle shadow-sm p-3">
-                            <i class="bi bi-whatsapp text-success"></i>
-                        </a>
-                    </div>
-                    <div class="data d-flex flex-column justify-content-center gap-1">
-                        <p class="text-primary m-0">WhatsApp</p>
-                        <p class="m-0">راسلني</p>
-                    </div>
-                </div>
-                <!-- 4. Facebook -->
-                <div class="contact w-100 bg-white p-3 rounded-3 d-flex gap-3 align-items-center mb-3">
-                    <div class="image">
-                        <a class="btn btn-light rounded-circle shadow-sm p-3">
-                            <i class="bi bi-facebook text-primary"></i>
-                        </a>
-                    </div>
-                    <div class="data d-flex flex-column justify-content-center gap-1">
-                        <p class="text-primary m-0">Facebook</p>
-                        <p class="m-0">تابعني</p>
-                    </div>
-                </div>
-                <!-- 5. Instagram -->
-                <div class="contact w-100 bg-white p-3 rounded-3 d-flex gap-3 align-items-center mb-3">
-                    <div class="image">
-                        <a class="btn btn-light rounded-circle shadow-sm p-3">
-                            <i class="bi bi-instagram text-danger"></i>
-                        </a>
-                    </div>
-                    <div class="data d-flex flex-column justify-content-center gap-1">
-                        <p class="text-primary m-0">Instagram</p>
-                        <p class="m-0">تابعني</p>
-                    </div>
-                </div>
-                <!-- 6. TikTok -->
-                <div class="contact w-100 bg-white p-3 rounded-3 d-flex gap-3 align-items-center mb-3">
-                    <div class="image">
-                        <a class="btn btn-light rounded-circle shadow-sm p-3">
-                            <i class="bi bi-tiktok text-dark"></i>
-                        </a>
-                    </div>
-                    <div class="data d-flex flex-column justify-content-center gap-1">
-                        <p class="text-primary m-0">TikTok</p>
-                        <p class="m-0">تابعني</p>
-                    </div>
-                </div>
-                <!-- 7. Email -->
-                <div class="contact w-100 bg-white p-3 rounded-3 d-flex gap-3 align-items-center mb-3">
-                    <div class="image">
-                        <a class="btn btn-light rounded-circle shadow-sm p-3">
-                            <i class="bi bi-envelope-fill text-danger"></i>
-                        </a>
-                    </div>
-                    <div class="data d-flex flex-column justify-content-center gap-1">
-                        <p class="text-primary m-0">Email</p>
-                        <p class="m-0">راسلني</p>
-                    </div>
-                </div>
-            </div>
+  <div class="container">
+    <div class="main-content mt-5">
+      <div class="header text-center">
+        <h1 class="text-primary">M.M</h1>
+        <h3 class="mt-2 mb-2 ">شركة إنتاج برمجة</h3>
+        <p class="fs-1">M.M Group</p>
+      </div>
+      <div class="content mb-5">
+        <!-- 1. Mobile -->
+        <div class="contact w-100 p-3  d-flex gap-3 btn-custom" (click)="callMobile(profile.mobile1)">
+          <div class="image">
+            <a class="btn btn-light rounded-circle shadow-sm p-3">
+              <i class="bi bi-phone-fill text-success"></i>
+            </a>
+          </div>
+          <div class="data d-flex flex-column justify-content-center gap-1">
+            <p class="title m-0">Mobile</p>
+            <p class="m-0">إتصل بي</p>
+          </div>
         </div>
-        <div class="actions d-flex justify-content-between align-items-center p-3">
-            <div class="w-25">
-                <button class="btn btn-primary w-100 rounded" type="button">مشاركة البيانات</button>
-            </div>
-            <div class="w-25">
-                <button class="btn btn-primary w-100 rounded" type="button">حفظ جهة الاتصال</button>
-            </div>
-            <div class="w-25">
-                <button class="btn btn-primary w-100 rounded" type="button"> تعديل البيانات</button>
-            </div>
+        <!-- 2. Telephone -->
+        <div class="contact w-100 p-3  d-flex gap-3 btn-custom" (click)="callTelephone(profile.mobile2)">
+          <div class="image">
+            <a class="btn btn-light rounded-circle shadow-sm p-3">
+              <i class="bi bi-telephone-fill text-primary"></i>
+            </a>
+          </div>
+          <div class="data d-flex flex-column justify-content-center gap-1">
+            <p class="title m-0">Telephone</p>
+            <p class="m-0">إتصل بي</p>
+          </div>
         </div>
-        <div class="w-100">
-            <button class=" btn btn-danger w-100" type="button">خليك .. ديجيتال واستفاد بالعرض</button>
+        <!-- 3. WhatsApp -->
+        <div class="contact w-100 p-3  d-flex gap-3 btn-custom" (click)="openWhatsApp(profile.whatsApp)">
+          <div class="image">
+            <a class="btn btn-light rounded-circle shadow-sm p-3">
+              <i class="bi bi-whatsapp text-success"></i>
+            </a>
+          </div>
+          <div class="data d-flex flex-column justify-content-center gap-1">
+            <p class="title m-0">WhatsApp</p>
+            <p class="m-0">راسلني</p>
+          </div>
         </div>
-        <p class="text-center fs-1 text-primary mt-5 mb-5">Powered By Ashal Net Work</p>
+        <!-- 4. Facebook -->
+        <div class="contact w-100 p-3  d-flex gap-3 btn-custom" (click)="openFacebook(profile.faceBook)">
+          <div class="image">
+            <a class="btn btn-light rounded-circle shadow-sm p-3">
+              <i class="bi bi-facebook text-primary"></i>
+            </a>
+          </div>
+          <div class="data d-flex flex-column justify-content-center gap-1">
+            <p class="title m-0">Facebook</p>
+            <p class="m-0">تابعني</p>
+          </div>
+        </div>
+        <!-- 5. Instagram -->
+        <div class="contact w-100 p-3  d-flex gap-3 btn-custom" (click)="openInstagram(profile.instagram)">
+          <div class="image">
+            <a class="btn btn-light rounded-circle shadow-sm p-3">
+              <i class="bi bi-instagram text-danger"></i>
+            </a>
+          </div>
+          <div class="data d-flex flex-column justify-content-center gap-1">
+            <p class="title m-0">Instagram</p>
+            <p class="m-0">تابعني</p>
+          </div>
+        </div>
+        <!-- 6. TikTok -->
+        <div class="contact w-100 p-3  d-flex gap-3 btn-custom" (click)="openTikTok(profile.tikTok)">
+          <div class="image">
+            <a class="btn btn-light rounded-circle shadow-sm p-3">
+              <i class="bi bi-tiktok text-dark"></i>
+            </a>
+          </div>
+          <div class="data d-flex flex-column justify-content-center gap-1">
+            <p class="title m-0">TikTok</p>
+            <p class="m-0">تابعني</p>
+          </div>
+        </div>
+        <!-- 7. Email -->
+        <div class="contact w-100 p-3  d-flex gap-3 btn-custom" (click)="sendEmail(profile.email)">
+          <div class="image">
+            <a class="btn btn-light rounded-circle shadow-sm p-3">
+              <i class="bi bi-envelope-fill text-danger"></i>
+            </a>
+          </div>
+          <div class="data d-flex flex-column justify-content-center gap-1">
+            <p class="title m-0">Email</p>
+            <p class="m-0">راسلني</p>
+          </div>
+        </div>
+      </div>
     </div>
-
+    <div class="actions d-flex justify-content-center gap-3 w-100 align-items-center p-3 mb-4">
+      <div class="flex-grow-1">
+        <button class="action_btn w-100" type="button">مشاركة البيانات</button>
+      </div>
+      <div class="flex-grow-1">
+        <button class="action_btn w-100" type="button">حفظ جهة الاتصال</button>
+      </div>
+      <div class="flex-grow-1">
+        <button class="action_btn w-100" type="button" (click)="ConfirmPopup()"> تعديل البيانات</button>
+      </div>
+    </div>
+    <div class="w-100 ">
+      <button class="new-btn w-100" type="button" (click)="openPromo()">خليك .. ديجيتال واستفاد بالعرض</button>
+    </div>
+    <p class="text-center fs-1 text-primary mt-5 mb-5">Powered By Ashal Net Work</p>
+  </div>
 </div>
