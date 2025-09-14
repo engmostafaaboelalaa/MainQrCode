@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
+import { ChangeDataComponent } from "./change-data/change-data.component";
 
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  standalone: true,
+  imports: [ChangeDataComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   
