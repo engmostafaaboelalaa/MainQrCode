@@ -39,10 +39,10 @@ export class AppComponent extends BaseComponent implements OnInit {
   }
   showSuccessAlert() {
     Swal.fire({
-      title: 'Success!',
-      text: 'This is a SweetAlert2 popup.',
+      title: 'تم الحفظ بنجاح',
+      text: 'تم إضافة البيانات إلى جهات الاتصال',
       icon: 'success',
-      confirmButtonText: 'Cool',
+      confirmButtonText: 'تم',
     });
   }
   ConfirmPopup() {
@@ -54,6 +54,7 @@ export class AppComponent extends BaseComponent implements OnInit {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'موافق',
+      cancelButtonText: 'الغاء',
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire('Deleted!', 'Your item has been deleted.', 'success');
@@ -82,6 +83,31 @@ export class AppComponent extends BaseComponent implements OnInit {
         popup: 'promo-swal',
       },
     });
+  }
+  saveVcf() {
+    const vCardData = `
+BEGIN:VCARD
+VERSION:3.0
+FN:${this.profile.id || 'Elon Musk'}
+TEL;TYPE=cell:${this.profile.mobile1}
+TEL;TYPE=cell:${this.profile.mobile2}
+TEL;TYPE=whatsapp:${this.profile.whatsApp}
+EMAIL:${this.profile.email}
+URL:${this.profile.faceBook || ''}
+URL:${this.profile.instagram || ''}
+URL:${this.profile.tikTok || ''}
+PHOTO;VALUE=URI:${this.profile.image || ''}
+END:VCARD
+  `.trim();
+
+    const blob = new Blob([vCardData], { type: 'text/vcard' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${this.profile.id || 'contact'}.vcf`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+    this.showSuccessAlert();
   }
   // Call mobile number
   callMobile(mobile: string | null) {
