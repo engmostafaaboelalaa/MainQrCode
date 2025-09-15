@@ -3,10 +3,11 @@ import Swal from 'sweetalert2';
 import { BaseComponent } from './shared/global/base/base.component';
 import { ClientService } from './shared/services/client.service';
 import { takeUntil } from 'rxjs';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [NgIf],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
@@ -16,8 +17,7 @@ export class AppComponent extends BaseComponent implements OnInit {
   }
   profile = {
     id: 1,
-    image:
-      'https://upload.wikimedia.org/wikipedia/commons/e/ed/Elon_Musk_Colorado_2022_%28cropped%29.jpg', // public profile photo
+    image: null, // public profile photo
     mobile1: '1234567890',
     mobile2: '0987654321',
     whatsApp: '1234567890',
@@ -53,7 +53,7 @@ export class AppComponent extends BaseComponent implements OnInit {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'موافق',
+      confirmButtonText: 'نعم',
       cancelButtonText: 'الغاء',
     }).then((result) => {
       if (result.isConfirmed) {
@@ -88,7 +88,7 @@ export class AppComponent extends BaseComponent implements OnInit {
     const vCardData = `
 BEGIN:VCARD
 VERSION:3.0
-FN:${this.profile.id || 'Elon Musk'}
+FN:${this.profile.id || ''}
 TEL;TYPE=cell:${this.profile.mobile1}
 TEL;TYPE=cell:${this.profile.mobile2}
 TEL;TYPE=whatsapp:${this.profile.whatsApp}
@@ -104,7 +104,7 @@ END:VCARD
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `${this.profile.id || 'contact'}.vcf`;
+    a.download = `${this.profile.faceBook || 'contact'}.vcf`;
     a.click();
     window.URL.revokeObjectURL(url);
     this.showSuccessAlert();
@@ -156,6 +156,31 @@ END:VCARD
   sendEmail(email: string | null) {
     if (email) {
       window.open(`mailto:${email}`, '_self');
+    }
+  }
+  shareProfile() {
+    const shareData: any = {
+      title: this.profile.faceBook || 'My Digital Profile',
+      text: `تقدر تتواصل مع ${this.profile.faceBook || 'الشخص'} عن طريق:
+📱 Mobile: ${this.profile.mobile1}
+📧 Email: ${this.profile.email}`,
+      url: window.location.href, // أو رابط ثابت للصفحة
+    };
+
+    if (navigator.share) {
+      navigator
+        .share(shareData)
+        .then(() => console.log('Shared successfully'))
+        .catch((error) => console.error('Error sharing', error));
+    } else {
+      // fallback لو المتصفح مش بيدعم share
+      const dummy = document.createElement('textarea');
+      dummy.value = `${shareData.text}\n${shareData.url}`;
+      document.body.appendChild(dummy);
+      dummy.select();
+      document.execCommand('copy');
+      document.body.removeChild(dummy);
+      alert('تم نسخ رابط المشاركة 👍');
     }
   }
 }
