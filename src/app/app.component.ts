@@ -5,10 +5,12 @@ import { ClientService } from './shared/services/client.service';
 import { takeUntil } from 'rxjs';
 import { NgIf } from '@angular/common';
 import { Client } from './shared/models/client.model';
+import { ChangeDataComponent } from './change-data/change-data.component';
 
 @Component({
   selector: 'app-root',
-  imports: [NgIf],
+  standalone: true,
+  imports: [ChangeDataComponent, NgIf],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

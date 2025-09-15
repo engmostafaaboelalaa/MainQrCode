@@ -76,3 +76,44 @@
 .image a i {
   font-size: 20px;
 }
+.my-custom-dialog .pi-exclamation-triangle {
+    font-size: 2rem;
+    color: #ff9800;
+}
+
+
+/* تخصيص البوكس نفسه */
+
+.my-custom-dialog .p-dialog {
+    border-radius: 16px;
+    background-color: #fdfdfd;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+/* تخصيص الهيدر */
+
+.my-custom-dialog .p-dialog-header {
+    background-color: #2196f3;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+
+/* تخصيص الرسالة */
+
+.my-custom-dialog .p-confirm-dialog-message {
+    font-size: 1rem;
+    text-align: right;
+    /* 👈 لو عايزها عربي */
+    color: #333;
+}
+
+
+/* تخصيص الأزرار */
+
+.my-custom-dialog .p-dialog-footer .p-button {
+    min-width: 100px;
+    font-weight: bold;
+}
