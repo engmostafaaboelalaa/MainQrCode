@@ -11,7 +11,7 @@ interface IntlTelInputOptions {
 @Component({
   selector: 'app-phone-input',
   templateUrl: './phone-input.component.html',
-  styleUrls: ['./phone-input.component.css']
+  styleUrls: ['./phone-input.component.css'],
 })
 export class PhoneInputComponent implements OnInit {
   @ViewChild('phoneInput', { static: true }) phoneInput!: ElementRef;
@@ -22,7 +22,7 @@ export class PhoneInputComponent implements OnInit {
     const options: IntlTelInputOptions = {
       initialCountry: 'eg',
       preferredCountries: ['eg', 'sa', 'ae', 'us'],
-      separateDialCode: true
+      separateDialCode: true,
     };
 
     this.iti = intlTelInput(this.phoneInput.nativeElement, options);

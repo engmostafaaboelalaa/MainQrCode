@@ -1,0 +1,85 @@
+.form-container {
+  margin: 50px auto;
+  padding: 30px;
+  border-radius: 15px;
+}
+
+.form-control {
+  border-radius: 25px;
+  padding: 20px 20px;
+}
+
+.form-control:hover,
+.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.btn-submit {
+  border-radius: 25px;
+  padding: 10px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 1em;
+  color: #005fad;
+}
+.form-control {
+  border: 2px solid #3399ff;
+  border-radius: 25px;
+  background: #ffffff;
+  color: #333;
+  transition: border-color 0.3s, background-color 0.3s;
+  padding: 10px 20px;
+  margin-bottom: 15px;
+  box-shadow: none;
+  width: 100%;
+  font-size: 14px;
+  height: 50px;
+  text-align: right;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+}
+.form-group {
+  background: transparent;
+  border-radius: 15px;
+  padding: 0;
+  margin-bottom: 15px;
+  text-align: right;
+}
+.input-group-text {
+  background-color: #e9f5ff;
+  border: 2px solid #3399ff;
+  border-radius: 25px 0 0 25px !important;
+  padding: 10px 15px;
+  font-size: 14px;
+  color: #005fad;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  width: 50%;
+  flex: 0 0 50%;
+  direction: ltr;
+}
+.input-group .form-control.account {
+  border-radius: 0 25px 25px 0 !important;
+  border-left: none;
+  width: 50%;
+  height: 50px;
+  flex: 0 0 50%;
+}
+.left_radius {
+  border-radius: 25px 0 0 25px !important;
+}
+.right_radius {
+  border-radius: 0 25px 25px 0;
+}
