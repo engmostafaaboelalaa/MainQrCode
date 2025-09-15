@@ -4,6 +4,7 @@ import { BaseComponent } from './shared/global/base/base.component';
 import { ClientService } from './shared/services/client.service';
 import { takeUntil } from 'rxjs';
 import { NgIf } from '@angular/common';
+import { Client } from './shared/models/client.model';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,7 @@ export class AppComponent extends BaseComponent implements OnInit {
   constructor(private _ClientService: ClientService) {
     super();
   }
-  profile = {
+  profile: Client = {
     id: 1,
     image: null, // public profile photo
     mobile1: '1234567890',
@@ -28,12 +29,15 @@ export class AppComponent extends BaseComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    this.onGetClientData(1);
+  }
+  onGetClientData(client_id: number) {
     this._ClientService
-      .GetClientsData(1)
+      .GetClientsData(client_id)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
-        next: (res) => {
-          console.log(res);
+        next: (res: any) => {
+          this.profile = res;
         },
       });
   }
