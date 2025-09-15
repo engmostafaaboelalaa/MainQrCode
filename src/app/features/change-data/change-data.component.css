@@ -83,3 +83,12 @@
 .right_radius {
   border-radius: 0 25px 25px 0;
 }
+.form-control:disabled {
+  background-color: #e2e2e2;
+  opacity: 1;
+}
+.form-control:disabled:hover,
+.form-control:disabled:focus {
+  border-color: none;
+  box-shadow: none;
+}

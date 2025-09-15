@@ -1,10 +1,131 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PhoneInputComponent } from '../../phone-input/phone-input.component';
-
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { CommonModule, NgIf } from '@angular/common';
+import { ClientData } from '../../shared/models/client.model';
+import { ActivatedRoute, Router } from '@angular/router';
+import { takeUntil } from 'rxjs';
+import { ClientService } from '../../shared/services/client.service';
+import Swal from 'sweetalert2';
+import { BaseComponent } from '../../shared/global/base/base.component';
 @Component({
   selector: 'app-change-data',
-  imports: [PhoneInputComponent],
+  imports: [CommonModule, ReactiveFormsModule, NgIf],
   templateUrl: './change-data.component.html',
   styleUrl: './change-data.component.css',
 })
-export class ChangeDataComponent {}
+export class ChangeDataComponent extends BaseComponent implements OnInit {
+  clientForm: FormGroup;
+
+  constructor(
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private _ClientService: ClientService
+  ) {
+    super();
+    this.clientForm = this.fb.group({
+      Id: [{ value: null, disabled: true }],
+      Image: [''],
+      Mobile1: ['', [Validators.required, Validators.pattern(/^[0-9]{8,15}$/)]],
+      Mobile2: [''],
+      WhatsApp: [''],
+      FaceBook: [''],
+      Instagram: [''],
+      TikTok: [''],
+      Email: ['', [Validators.email]],
+    });
+  }
+  uniqueId: string | null = null;
+  mode: 'create' | 'edit' = 'create';
+  button_loading: boolean = false;
+  ngOnInit(): void {
+    this.uniqueId = this.route.snapshot.paramMap.get('id');
+
+    if (this.uniqueId) {
+      this.mode = 'edit';
+      this.loadClientData(this.uniqueId);
+    } else {
+      this.mode = 'create';
+    }
+  }
+  loadClientData(id: any) {
+    this._ClientService
+      .GetClientsData(id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (res: any) => {
+          if (res) {
+            this.clientForm.patchValue({
+              Id: this.uniqueId,
+              Image: res.image || '',
+              Mobile1: res.mobile1 || '',
+              Mobile2: res.mobile2 || '',
+              WhatsApp: res.whatsApp || '',
+              FaceBook: res.faceBook || '',
+              Instagram: res.instagram || '',
+              TikTok: res.tikTok || '',
+              Email: res.email || '',
+            });
+          }
+        },
+        error: (err) => {
+          console.error('❌ Error fetching client data', err);
+          // ممكن تعرض SweetAlert2 هنا لو تحب
+        },
+      });
+  }
+
+  onSubmit() {
+    this.button_loading = true;
+    if (this.clientForm.invalid) {
+      this.clientForm.markAllAsTouched();
+      // Swal.fire({
+      //   icon: 'warning',
+      //   title: '⚠️ تنبيه',
+      //   text: 'من فضلك أكمل البيانات بشكل صحيح',
+      //   confirmButtonText: 'تمام',
+      // });
+      this.button_loading = false;
+      return;
+    }
+
+    const formData: ClientData = this.clientForm.value as ClientData;
+    console.log(formData);
+
+    this._ClientService
+      .AddOrEditClientData(formData, this.uniqueId)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (res) => {
+          this.button_loading = false;
+
+          Swal.fire({
+            icon: 'success',
+            title: '✅ تم الحفظ بنجاح',
+            text: 'تم تسجيل بنجاح',
+            confirmButtonText: 'تمام',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.loadClientData(this.uniqueId);
+            }
+          });
+        },
+        error: (err) => {
+          this.button_loading = false;
+
+          Swal.fire({
+            icon: 'error',
+            title: '❌ خطأ',
+            text: 'حصل خطأ أثناء حفظ البيانات، حاول مرة أخرى',
+            confirmButtonText: 'تمام',
+          });
+        },
+      });
+  }
+}

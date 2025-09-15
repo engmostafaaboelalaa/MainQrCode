@@ -4,11 +4,28 @@ import { ChangeDataComponent } from './features/change-data/change-data.componen
 export const routes: Routes = [
   {
     path: '',
+    redirectTo: 'user',
+    pathMatch: 'full',
+  },
+  {
+    path: 'user',
     loadComponent: () =>
       import('./features/home/home.component').then((m) => m.HomeComponent),
   },
   {
-    path: 'edit',
+    path: 'user/:id',
+    loadComponent: () =>
+      import('./features/home/home.component').then((m) => m.HomeComponent),
+  },
+  {
+    path: 'user-form',
+    loadComponent: () =>
+      import('./features/change-data/change-data.component').then(
+        (m) => m.ChangeDataComponent
+      ),
+  },
+  {
+    path: 'user-form/:id',
     loadComponent: () =>
       import('./features/change-data/change-data.component').then(
         (m) => m.ChangeDataComponent

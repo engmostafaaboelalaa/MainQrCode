@@ -1,79 +1,89 @@
 <div class="container">
   <div class="form-container">
     <div class="text-center fs-1 text-primary">تسجيل البيانات</div>
-    <form class="mt-2 pt-2">
-      <div class="form-group mb-3">
-        <input type="text" class="form-control" placeholder="رقم الكود">
-      </div>
-      <!-- الوظيفة -->
-      <div class="form-group mb-3">
-        <label class="form-label">الأسم</label>
-        <input type="text" class="form-control" placeholder="أدخل الأسم">
-      </div>
-      <!-- الوظيفة -->
-      <div class="form-group mb-3">
-        <label class="form-label">الوظيفة</label>
-        <input type="text" class="form-control" placeholder="أدخل الوظيفة">
-      </div>
 
-      <!-- اسم الشركة -->
-      <div class="form-group mb-3">
-        <label class="form-label">اسم الشركة</label>
-        <input type="text" class="form-control" placeholder="أدخل اسم الشركة">
+    <!-- اربط الفورم -->
+    <form class="mt-2 pt-2" [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+
+      <!-- رقم الكود -->
+      <div class="form-group mb-3" *ngIf="uniqueId">
+        <input type="text" class="form-control" id="code" formControlName="Id" [disabled]="true"
+          placeholder="رقم الكود">
       </div>
 
       <!-- رقم الهاتف -->
       <div class="form-group mb-3">
-        <label class="form-label">رقم الهاتف</label>
+        <label for="mobile" class="form-label">رقم الهاتف</label>
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="أدخل رقم الهاتف">
+          <input type="text" class="form-control" id="mobile" formControlName="Mobile1" placeholder="أدخل رقم الهاتف">
+        </div>
+      </div>
+      <div class="form-group mb-3">
+        <label for="mobile" class="form-label">رقم الهاتف</label>
+        <div class="input-group">
+          <input type="text" class="form-control" id="mobile" formControlName="Mobile2" placeholder="أدخل رقم الهاتف">
         </div>
       </div>
 
       <!-- رقم واتساب -->
       <div class="form-group mb-3">
-        <label class="form-label">رقم الواتساب </label>
+        <label for="whatsapp" class="form-label">رقم الواتساب</label>
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="أدخل رقم واتساب ">
+          <input type="text" class="form-control" id="whatsapp" formControlName="WhatsApp"
+            placeholder="أدخل رقم واتساب">
         </div>
       </div>
 
       <!-- البريد الإلكتروني -->
       <div class="form-group mb-3">
-        <label class="form-label">البريد الإلكتروني</label>
-        <input type="email" class="form-control" placeholder="example@domain.com">
+        <label for="email" class="form-label">البريد الإلكتروني</label>
+        <input type="email" class="form-control" id="email" formControlName="Email" placeholder="example@domain.com">
       </div>
 
-      <!-- روابط السوشيال -->
+      <!-- رابط فيسبوك -->
       <div class="form-group mb-3">
-        <label class="form-label">رابط فيسبوك</label>
+        <label for="facebook" class="form-label">رابط فيسبوك</label>
         <div class="input-group">
-          <input type="text" class="form-control account" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
-          <span class="input-group-text left_radius" id="basic-addon3">https://example.com/users/</span>
+          <input type="text" class="form-control account" id="facebook" formControlName="FaceBook"
+            aria-describedby="facebook-addon">
+          <span class="input-group-text left_radius" id="facebook-addon">https://www.facebook.com/</span>
         </div>
       </div>
 
+      <!-- رابط إنستجرام -->
       <div class="form-group mb-3">
-        <label class="form-label">رابط إنستجرام</label>
+        <label for="instagram" class="form-label">رابط إنستجرام</label>
         <div class="input-group">
-          <input type="text" class="form-control account" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
-          <span class="input-group-text left_radius" id="basic-addon3">https://example.com/users/</span>
+          <input type="text" class="form-control account" id="instagram" formControlName="Instagram"
+            aria-describedby="instagram-addon">
+          <span class="input-group-text left_radius" id="instagram-addon">https://www.instagram.com/</span>
         </div>
       </div>
 
+      <!-- رابط تيك توك -->
       <div class="form-group mb-3">
-        <label class="form-label">رابط تيك توك</label>
+        <label for="tiktok" class="form-label">رابط تيك توك</label>
         <div class="input-group">
-          <input type="text" class="form-control account" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
-          <span class="input-group-text left_radius" id="basic-addon3">https://example.com/users/</span>
+          <input type="text" class="form-control account" id="tiktok" formControlName="TikTok"
+            aria-describedby="tiktok-addon">
+          <span class="input-group-text left_radius" id="tiktok-addon">https://www.tiktok.com/&#64;</span>
         </div>
       </div>
-
 
       <!-- زر التسجيل -->
       <div class="d-grid">
-        <button type="submit" class="btn btn-primary btn-submit">تسجيل</button>
+        <button type="submit" class="btn btn-primary btn-submit"
+          *ngIf="!button_loading; else loadingButton">تسجيل</button>
+        <ng-template #loadingButton>
+          <button class="btn btn-primary btn-submit" type="button" disabled>
+            يتم التسجيل...
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          </button>
+        </ng-template>
       </div>
+
+
+
     </form>
   </div>
 </div>

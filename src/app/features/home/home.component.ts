@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import { Client } from '../../shared/models/client.model';
 import { ClientService } from '../../shared/services/client.service';
 import { NgIf } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -14,25 +14,22 @@ import { Router } from '@angular/router';
   styleUrl: './home.component.css',
 })
 export class HomeComponent extends BaseComponent implements OnInit {
-  constructor(private _ClientService: ClientService, private router: Router) {
+  constructor(
+    private _ClientService: ClientService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
     super();
+    this.uniqueId = this.route.snapshot.paramMap.get('id');
   }
-  profile: Client = {
-    id: 1,
-    image: null, // public profile photo
-    mobile1: '1234567890',
-    mobile2: '0987654321',
-    whatsApp: '1234567890',
-    faceBook: 'https://www.facebook.com/ElonMusk',
-    instagram: 'https://www.instagram.com/elonmusk',
-    tikTok: 'https://www.tiktok.com/@elonmusk',
-    email: 'elon.musk@tesla.com',
-  };
+  uniqueId: string | null = null;
+
+  profile!: Client;
 
   ngOnInit(): void {
-    this.onGetClientData(1);
+    this.onGetClientData(this.uniqueId);
   }
-  onGetClientData(client_id: number) {
+  onGetClientData(client_id: any) {
     this._ClientService
       .GetClientsData(client_id)
       .pipe(takeUntil(this.destroy$))
@@ -62,7 +59,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
       cancelButtonText: 'الغاء',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.router.navigate(['edit']);
+        this.router.navigate(['user-form']);
       }
     });
   }

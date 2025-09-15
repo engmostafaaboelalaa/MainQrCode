@@ -15,9 +15,19 @@ export class ClientService {
     let params = new HttpParams().set('Id', client_id);
     return this.http.get(url, { params });
   }
-  AddOrEditClientData(data: ClientData) {
+  AddOrEditClientData(data: ClientData, client_id?: any) {
     let url = this.baseURL + 'Clients';
-    const body = '';
-    return this.http.post(url, body);
+    let params = new HttpParams();
+
+    if (client_id) {
+      params = params.set('Id', client_id);
+    }
+    const formData = new FormData();
+    Object.entries(data).forEach(([key, value]) => {
+      if (value !== null && value !== undefined) {
+        formData.append(key, value as any);
+      }
+    });
+    return this.http.post(url, formData, { params });
   }
 }

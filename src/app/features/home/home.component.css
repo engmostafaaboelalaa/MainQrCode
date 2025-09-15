@@ -76,3 +76,7 @@
 .image a i {
   font-size: 20px;
 }
+.contact.disabled {
+  opacity: 0.5;
+  pointer-events: none; /* يمنع الكليك */
+}
