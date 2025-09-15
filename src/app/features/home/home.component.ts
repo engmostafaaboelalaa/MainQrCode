@@ -59,7 +59,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
       cancelButtonText: 'الغاء',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.router.navigate(['user-form']);
+        this.router.navigate(['user', this.uniqueId, 'user-form']);
       }
     });
   }

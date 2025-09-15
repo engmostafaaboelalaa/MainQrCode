@@ -80,17 +80,20 @@ export class ChangeDataComponent extends BaseComponent implements OnInit {
         },
       });
   }
+  selectedFile: File | null = null;
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+      this.clientForm.get('Image')?.patchValue(this.selectedFile);
+    }
+  }
 
   onSubmit() {
     this.button_loading = true;
     if (this.clientForm.invalid) {
       this.clientForm.markAllAsTouched();
-      // Swal.fire({
-      //   icon: 'warning',
-      //   title: '⚠️ تنبيه',
-      //   text: 'من فضلك أكمل البيانات بشكل صحيح',
-      //   confirmButtonText: 'تمام',
-      // });
       this.button_loading = false;
       return;
     }

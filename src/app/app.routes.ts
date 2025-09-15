@@ -18,10 +18,10 @@ export const routes: Routes = [
       import('./features/home/home.component').then((m) => m.HomeComponent),
   },
   {
-    path: 'user-form',
+    path: 'user/:id/user-form',
     loadComponent: () =>
-      import('./features/change-data/change-data.component').then(
-        (m) => m.ChangeDataComponent
+      import('./features/enter-client-id/enter-client-id.component').then(
+        (m) => m.EnterClientIdComponent
       ),
   },
   {

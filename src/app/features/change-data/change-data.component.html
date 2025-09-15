@@ -10,7 +10,11 @@
         <input type="text" class="form-control" id="code" formControlName="Id" [disabled]="true"
           placeholder="رقم الكود">
       </div>
-
+      <!-- الصورة -->
+      <div class="mb-3">
+        <label for="formFile" class="form-label">الصورة</label>
+        <input class="form-control" type="file" id="formFile" (change)="onFileSelected($event)">
+      </div>
       <!-- رقم الهاتف -->
       <div class="form-group mb-3">
         <label for="mobile" class="form-label">رقم الهاتف</label>
@@ -19,7 +23,7 @@
         </div>
       </div>
       <div class="form-group mb-3">
-        <label for="mobile" class="form-label">رقم الهاتف</label>
+        <label for="mobile" class="form-label">رقم الهاتف الاضافي</label>
         <div class="input-group">
           <input type="text" class="form-control" id="mobile" formControlName="Mobile2" placeholder="أدخل رقم الهاتف">
         </div>
