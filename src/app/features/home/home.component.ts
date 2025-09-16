@@ -21,6 +21,9 @@ export class HomeComponent extends BaseComponent implements OnInit {
   ) {
     super();
     this.uniqueId = this.route.snapshot.paramMap.get('id');
+    if(!this.uniqueId){
+      this.router.navigateByUrl('No-clientId');
+    }
   }
   uniqueId: string | null = null;
 
@@ -88,20 +91,19 @@ export class HomeComponent extends BaseComponent implements OnInit {
   }
   saveVcf() {
     const vCardData = `
-BEGIN:VCARD
-VERSION:3.0
-FN:${this.profile.id || ''}
-TEL;TYPE=cell:${this.profile.mobile1}
-TEL;TYPE=cell:${this.profile.mobile2}
-TEL;TYPE=whatsapp:${this.profile.whatsApp}
-EMAIL:${this.profile.email}
-URL:${this.profile.faceBook || ''}
-URL:${this.profile.instagram || ''}
-URL:${this.profile.tikTok || ''}
-PHOTO;VALUE=URI:${this.profile.image || ''}
-END:VCARD
+    BEGIN:VCARD
+    VERSION:3.0
+    FN:${this.profile.id || ''}
+    TEL;TYPE=cell:${this.profile.mobile1}
+    TEL;TYPE=cell:${this.profile.mobile2}
+    TEL;TYPE=whatsapp:${this.profile.whatsApp}
+    EMAIL:${this.profile.email}
+    URL:${this.profile.faceBook || ''}
+    URL:${this.profile.instagram || ''}
+    URL:${this.profile.tikTok || ''}
+    PHOTO;VALUE=URI:${this.profile.image || ''}
+    END:VCARD
   `.trim();
-
     const blob = new Blob([vCardData], { type: 'text/vcard' });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -164,8 +166,8 @@ END:VCARD
     const shareData: any = {
       title: this.profile.faceBook || 'My Digital Profile',
       text: `تقدر تتواصل مع ${this.profile.faceBook || 'الشخص'} عن طريق:
-📱 Mobile: ${this.profile.mobile1}
-📧 Email: ${this.profile.email}`,
+📱     Mobile: ${this.profile.mobile1}
+📧    Email: ${this.profile.email}`,
       url: window.location.href, // أو رابط ثابت للصفحة
     };
 

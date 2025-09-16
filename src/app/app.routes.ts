@@ -1,21 +1,21 @@
 import { Routes } from '@angular/router';
-import { ChangeDataComponent } from './features/change-data/change-data.component';
+
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'user',
+    redirectTo: 'No-clientId',
     pathMatch: 'full',
-  },
-  {
-    path: 'user',
-    loadComponent: () =>
-      import('./features/home/home.component').then((m) => m.HomeComponent),
   },
   {
     path: 'user/:id',
     loadComponent: () =>
       import('./features/home/home.component').then((m) => m.HomeComponent),
+  },
+  {
+    path: 'No-clientId',
+    loadComponent: () =>
+      import('./features/no-data/no-data.component').then((m) => m.NoDataComponent),
   },
   {
     path: 'user/:id/user-form',
