@@ -13,6 +13,7 @@ import { takeUntil } from 'rxjs';
 import { ClientService } from '../../shared/services/client.service';
 import Swal from 'sweetalert2';
 import { BaseComponent } from '../../shared/global/base/base.component';
+import { environment } from '../../environment/environment';
 @Component({
   selector: 'app-change-data',
   imports: [CommonModule, ReactiveFormsModule, NgIf],
@@ -21,6 +22,8 @@ import { BaseComponent } from '../../shared/global/base/base.component';
 })
 export class ChangeDataComponent extends BaseComponent implements OnInit {
   clientForm: FormGroup;
+  baseUrl:string = environment.base;
+  clientImage!:string;
 
   constructor(
     private fb: FormBuilder,
@@ -61,6 +64,7 @@ export class ChangeDataComponent extends BaseComponent implements OnInit {
       .subscribe({
         next: (res: any) => {
           if (res) {
+            this.clientImage = res.image;
             this.clientForm.patchValue({
               Id: this.uniqueId,
               Image: res.image || '',
@@ -80,17 +84,20 @@ export class ChangeDataComponent extends BaseComponent implements OnInit {
         },
       });
   }
+  selectedFile: File | null = null;
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+      this.clientForm.get('Image')?.patchValue(this.selectedFile);
+    }
+  }
 
   onSubmit() {
     this.button_loading = true;
     if (this.clientForm.invalid) {
       this.clientForm.markAllAsTouched();
-      // Swal.fire({
-      //   icon: 'warning',
-      //   title: '⚠️ تنبيه',
-      //   text: 'من فضلك أكمل البيانات بشكل صحيح',
-      //   confirmButtonText: 'تمام',
-      // });
       this.button_loading = false;
       return;
     }
