@@ -115,21 +115,21 @@ export class HomeComponent extends BaseComponent implements OnInit {
     this.showSuccessAlert();
   }
   // Call mobile number
-  callMobile(mobile: string | null) {
+  callMobile(mobile: string | null| undefined) {
     if (mobile) {
       window.open(`tel:${mobile}`, '_self');
     }
   }
 
   // Call telephone number
-  callTelephone(mobile: string | null) {
+  callTelephone(mobile: string | null | undefined) {
     if (mobile) {
       window.open(`tel:${mobile}`, '_self');
     }
   }
 
   // Open WhatsApp chat
-  openWhatsApp(number: string | null) {
+  openWhatsApp(number: string | null | undefined) {
     if (number) {
       const cleanNumber = number.replace(/\D/g, '');
       window.open(`https://wa.me/${cleanNumber}`, '_blank');
@@ -137,28 +137,28 @@ export class HomeComponent extends BaseComponent implements OnInit {
   }
 
   // Open Facebook
-  openFacebook(username: string | null) {
+  openFacebook(username: string | null | undefined) {
     if (username) {
       window.open(`https://facebook.com/${username}`, '_blank');
     }
   }
 
   // Open Instagram
-  openInstagram(username: string | null) {
+  openInstagram(username: string | null | undefined) {
     if (username) {
       window.open(`https://instagram.com/${username}`, '_blank');
     }
   }
 
   // Open TikTok
-  openTikTok(username: string | null) {
+  openTikTok(username: string | null | undefined) {
     if (username) {
       window.open(`https://www.tiktok.com/@${username}`, '_blank');
     }
   }
 
   // Send email
-  sendEmail(email: string | null) {
+  sendEmail(email: string | null | undefined) {
     if (email) {
       window.open(`mailto:${email}`, '_self');
     }
