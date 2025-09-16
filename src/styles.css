@@ -4,7 +4,7 @@ body {
     /* fallback color */
     background-color: #544184 !important;
     /* gradient background */
-    background: linear-gradient(135deg, #544184, #8e6cc5);
+    background: linear-gradient(135deg, #544184, #b3b2b4);
     direction: rtl;
     font-family: "Arial", sans-serif;
     color: #ffffff;

@@ -29,7 +29,7 @@
     flex: 1;
     font-size: 14px;
     padding: 10px 15px;
-    background-color: #005fad;
+    background-color: #62518b;
     color: white;
     border-radius: 25px;
     border: none;
@@ -41,12 +41,12 @@
 }
 
 .action_btn:hover {
-    background-color: #5f8cbf;
+    background-color: #0f54a1;
     color: white;
 }
 
 .new-btn {
-    background-color: #ff0000;
+    background-color: #fbd66cd6;
     color: white;
     border-radius: 25px;
     padding: 12px 9px;
@@ -60,7 +60,7 @@
 }
 
 .new-btn:hover {
-    background-color: #ff4444;
+    background-color: #f1b91fd6;
 }
 
 .desc_text {
