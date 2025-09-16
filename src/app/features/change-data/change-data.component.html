@@ -6,7 +6,7 @@
         <form class="mt-2 pt-2" [formGroup]="clientForm" (ngSubmit)="onSubmit()">
 
             <!-- رقم الكود -->
-            <div class="form-group mb-3" *ngIf="uniqueId">
+            <div class="form-group mb-3" *ngIf="currentId">
                 <input type="text" class="form-control" id="code" formControlName="Id" [disabled]="true" placeholder="رقم الكود">
             </div>
             <!-- الصورة -->
@@ -28,7 +28,29 @@
                     <input type="text" class="form-control" id="mobile" formControlName="Mobile2" placeholder="أدخل رقم الهاتف">
                 </div>
             </div>
-
+            =======
+            <!-- رقم الكود -->
+            <div class="form-group mb-3" *ngIf="updateId">
+                <input type="text" class="form-control" id="code" formControlName="Id" [disabled]="true" placeholder="رقم الكود">
+            </div>
+            <!-- الصورة -->
+            <div class="mb-3">
+                <label for="formFile" class="form-label">الصورة</label>
+                <input class="form-control" type="file" id="formFile" (change)="onFileSelected($event)">
+            </div>
+            <!-- رقم الهاتف -->
+            <div class="form-group mb-3">
+                <label for="mobile" class="form-label">رقم الهاتف</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="mobile" formControlName="Mobile1" placeholder="أدخل رقم الهاتف">
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label for="mobile" class="form-label">رقم الهاتف الاضافي</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="mobile" formControlName="Mobile2" placeholder="أدخل رقم الهاتف">
+                </div>
+            </div>
             <!-- رقم واتساب -->
             <div class="form-group mb-3">
                 <label for="whatsapp" class="form-label">رقم الواتساب</label>
@@ -80,9 +102,6 @@
           </button>
                 </ng-template>
             </div>
-
-
-
         </form>
     </div>
 </div>

@@ -35,24 +35,26 @@ export class ChangeDataComponent extends BaseComponent implements OnInit {
     this.clientForm = this.fb.group({
       Id: [{ value: null, disabled: true }],
       Image: [''],
-      Mobile1: ['', [Validators.required, Validators.pattern(/^[0-9]{8,15}$/)]],
+      Mobile1: [''],
       Mobile2: [''],
       WhatsApp: [''],
       FaceBook: [''],
       Instagram: [''],
       TikTok: [''],
-      Email: ['', [Validators.email]],
+      Email: [''],
     });
   }
-  uniqueId: string | null = null;
+  updateId: string | null = null;
+  currentId: string | null = null;
   mode: 'create' | 'edit' = 'create';
   button_loading: boolean = false;
   ngOnInit(): void {
-    this.uniqueId = this.route.snapshot.paramMap.get('id');
-
-    if (this.uniqueId) {
+    this.updateId = this.route.snapshot.paramMap.get('update_id');
+    this.currentId = this.route.snapshot.paramMap.get('current_user_id');
+    console.log('Current Id: ', this.currentId);
+    if (this.updateId) {
       this.mode = 'edit';
-      this.loadClientData(this.uniqueId);
+      this.loadClientData(this.updateId);
     } else {
       this.mode = 'create';
     }
@@ -66,7 +68,7 @@ export class ChangeDataComponent extends BaseComponent implements OnInit {
           if (res) {
             this.clientImage = res.image;
             this.clientForm.patchValue({
-              Id: this.uniqueId,
+              Id: this.updateId,
               Image: res.image || '',
               Mobile1: res.mobile1 || '',
               Mobile2: res.mobile2 || '',
@@ -106,7 +108,7 @@ export class ChangeDataComponent extends BaseComponent implements OnInit {
     console.log(formData);
 
     this._ClientService
-      .AddOrEditClientData(formData, this.uniqueId)
+      .AddOrEditClientData(formData, this.updateId)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (res) => {
@@ -119,8 +121,7 @@ export class ChangeDataComponent extends BaseComponent implements OnInit {
             confirmButtonText: 'تمام',
           }).then((result) => {
             if (result.isConfirmed) {
-              this.loadClientData(this.uniqueId);
-              this.router.navigateByUrl('/user');
+              this.router.navigate(['user', this.currentId]);
             }
           });
         },
