@@ -120,6 +120,7 @@ export class ChangeDataComponent extends BaseComponent implements OnInit {
           }).then((result) => {
             if (result.isConfirmed) {
               this.loadClientData(this.uniqueId);
+              this.router.navigateByUrl('/user');
             }
           });
         },

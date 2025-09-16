@@ -39,7 +39,7 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'qr-code',
+    path: 'qr-code/:clientId',
     loadComponent: () =>
       import('./features/qr-image/qr-image.component').then(
         (m) => m.QrImageComponent
