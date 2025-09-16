@@ -97,3 +97,9 @@
     opacity: 0.5;
     /* makes it look inactive */
 }
+
+.radius {
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+}

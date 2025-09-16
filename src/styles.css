@@ -1,45 +1,47 @@
 /* You can add global styles to this file, and also import other style files */
 
 body {
-  background: url("/images/background.jpg") no-repeat center center fixed;
-  background-size: cover;
-  direction: rtl;
-  font-family: "Arial", sans-serif;
-  color: #ffffff;
-  text-align: center;
-  padding: 20px;
+    background-color: #f5da86 !important;
+    direction: rtl;
+    font-family: "Arial", sans-serif;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
 }
+
+
 /* SweetAlert2 custom popup */
+
 .promo-swal {
-  font-family: Tahoma, Arial, sans-serif;
-  text-align: center;
-  padding: 20px;
+    font-family: Tahoma, Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
 }
 
 .promo-popup h2 {
-  font-size: 20px;
-  margin-bottom: 10px;
-  color: #004aad;
-  font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #004aad;
+    font-weight: bold;
 }
 
 .promo-popup .discount {
-  color: red;
-  font-weight: bold;
-  font-size: 28px;
-  margin: 5px 0;
+    color: red;
+    font-weight: bold;
+    font-size: 28px;
+    margin: 5px 0;
 }
 
 .promo-popup .qr-box img {
-  width: 150px;
-  height: 150px;
-  border-radius: 12px;
-  margin: 10px 0;
+    width: 150px;
+    height: 150px;
+    border-radius: 12px;
+    margin: 10px 0;
 }
 
 .promo-popup .note {
-  margin-top: 10px;
-  font-size: 14px;
-  color: #004aad;
-  font-weight: 600;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #004aad;
+    font-weight: 600;
 }
