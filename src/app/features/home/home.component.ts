@@ -6,6 +6,7 @@ import { Client } from '../../shared/models/client.model';
 import { ClientService } from '../../shared/services/client.service';
 import { NgIf } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from '../../environment/environment';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,9 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './home.component.css',
 })
 export class HomeComponent extends BaseComponent implements OnInit {
+  currentId: string | null = null;
+  profile!: Client;
+  basUrl:string = environment.base;
   constructor(
     private _ClientService: ClientService,
     private router: Router,
@@ -25,11 +29,8 @@ export class HomeComponent extends BaseComponent implements OnInit {
       this.router.navigateByUrl('No-clientId');
     }
   }
-  currentId: string | null = null;
-
-  profile!: Client;
-
   ngOnInit(): void {
+     console.log(this.basUrl)
     this.onGetClientData(this.currentId);
   }
   onGetClientData(client_id: any) {
