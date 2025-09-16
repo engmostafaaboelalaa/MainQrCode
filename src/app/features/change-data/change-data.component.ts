@@ -93,6 +93,9 @@ export class ChangeDataComponent extends BaseComponent implements OnInit {
     if (input.files && input.files.length > 0) {
       this.selectedFile = input.files[0];
       this.clientForm.get('Image')?.patchValue(this.selectedFile);
+
+      // اعمل blob URL علشان يظهر فورا
+      this.clientImage = URL.createObjectURL(this.selectedFile);
     }
   }
 

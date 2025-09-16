@@ -4,7 +4,6 @@
 
         <!-- اربط الفورم -->
         <form class="mt-2 pt-2" [formGroup]="clientForm" (ngSubmit)="onSubmit()">
-
             <!-- رقم الكود -->
             <div class="form-group mb-3" *ngIf="currentId">
                 <input type="text" class="form-control" id="code" formControlName="Id" [disabled]="true" placeholder="رقم الكود">
@@ -12,8 +11,16 @@
             <!-- الصورة -->
             <div class="mb-3">
                 <label for="formFile" class="form-label">الصورة</label>
-                <input class="form-control" type="file" id="formFile" (change)="onFileSelected($event)">
-                <img [src]="baseUrl + clientImage" alt="">
+                <input class="form-control m-1" type="file" id="formFile" (change)="onFileSelected($event)">
+                <div class="main-image">
+                    <div class="image">
+                        <!-- Show preview if exists -->
+                        <img [src]="clientImage?.startsWith('blob:') ? clientImage : baseUrl + clientImage" alt="" *ngIf="clientImage; else noImg">
+                        <ng-template #noImg>
+                            <i class="bi bi-person-circle text-secondary" style="font-size: 60px;"></i>
+                        </ng-template>
+                    </div>
+                </div>
             </div>
             <!-- رقم الهاتف -->
             <div class="form-group mb-3">
