@@ -20,14 +20,14 @@ export class HomeComponent extends BaseComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     super();
-    this.uniqueId = this.route.snapshot.paramMap.get('id');
+    this.currentId = this.route.snapshot.paramMap.get('current_user_id');
   }
-  uniqueId: string | null = null;
+  currentId: string | null = null;
 
   profile!: Client;
 
   ngOnInit(): void {
-    this.onGetClientData(this.uniqueId);
+    this.onGetClientData(this.currentId);
   }
   onGetClientData(client_id: any) {
     this._ClientService
@@ -59,7 +59,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
       cancelButtonText: 'الغاء',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.router.navigate(['user', this.uniqueId, 'user-form']);
+        this.router.navigate(['user', this.currentId, 'user-form']);
       }
     });
   }

@@ -10,12 +10,10 @@ import Swal from 'sweetalert2';
 })
 export class EnterClientIdComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute) {}
-  uniqueId: string | null = null;
+  currentId: string | null = null;
 
   ngOnInit(): void {
-    this.uniqueId = this.route.snapshot.paramMap.get('id');
-    console.log(this.uniqueId);
-
+    this.currentId = this.route.snapshot.paramMap.get('current_user_id');
     this.askForClientId();
   }
 
@@ -43,11 +41,10 @@ export class EnterClientIdComponent implements OnInit {
     });
 
     if (isConfirmed && clientId) {
-      // لو المستخدم أكد وأدخل رقم صحيح → يروح على صفحة التعديل
-      this.router.navigate(['/user-form', clientId]);
+      this.router.navigate(['user', this.currentId, 'user-form', clientId]);
     } else if (isDismissed) {
       // لو عمل إلغاء → يرجع على الهوم
-      this.router.navigate(['user', this.uniqueId]);
+      this.router.navigate(['user', this.currentId]);
     }
   }
 }

@@ -6,7 +6,7 @@
     <form class="mt-2 pt-2" [formGroup]="clientForm" (ngSubmit)="onSubmit()">
 
       <!-- رقم الكود -->
-      <div class="form-group mb-3" *ngIf="uniqueId">
+      <div class="form-group mb-3" *ngIf="updateId">
         <input type="text" class="form-control" id="code" formControlName="Id" [disabled]="true"
           placeholder="رقم الكود">
       </div>
