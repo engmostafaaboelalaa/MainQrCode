@@ -167,9 +167,9 @@ export class HomeComponent extends BaseComponent implements OnInit {
     const shareData: any = {
       title: this.profile.faceBook || 'My Digital Profile',
       text: `تقدر تتواصل مع ${this.profile.faceBook || 'الشخص'} عن طريق:
-📱     Mobile: ${this.profile.mobile1}
-📧    Email: ${this.profile.email}`,
-      url: window.location.href, // أو رابط ثابت للصفحة
+  📱     Mobile: ${this.profile.mobile1}
+  📧    Email: ${this.profile.email}`,
+        url: window.location.href, // أو رابط ثابت للصفحة
     };
 
     if (navigator.share) {

@@ -100,9 +100,10 @@
             </div>
         </div>
         <div class="row g-3 w-100 p-3 mb-4">
+            <!-- home.component.html -->
             <div class="col-12 col-lg-4">
-                <button class="action_btn w-100" type="button" (click)="shareProfile()">
-                  مشاركة البيانات
+                <button class="action_btn w-100" type="button" (click)="shareProfile()" [disabled]="!profile?.id">
+                    مشاركة البيانات
                 </button>
             </div>
             <div class="col-12 col-lg-4">
