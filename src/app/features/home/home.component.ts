@@ -139,7 +139,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
   // Open Facebook
   openFacebook(username: string | null | undefined) {
     if (username) {
-      window.open(`https://facebook.com/${username}`, '_blank');
+      window.open(`${username}`, '_blank');
     }
   }
 
@@ -163,29 +163,46 @@ export class HomeComponent extends BaseComponent implements OnInit {
       window.open(`mailto:${email}`, '_self');
     }
   }
+
   shareProfile() {
+
+    // Clean the object (skip null/undefined & skip image)
+    const cleanData: any = {};
+    Object.entries(this.profile).forEach(([key, value]) => {
+      if (value && key !== "image") {
+        cleanData[key] = value;
+      }
+    });
+
+    // Add current URL into the object
+    cleanData["url"] = window.location.href;
+
+    // Convert to a readable text format
+    const textToShare = Object.entries(cleanData)
+      .map(([key, value]) => `${key}: ${value}`)
+      .join("\n");
+
     const shareData: any = {
-      title: this.profile.faceBook || 'My Digital Profile',
-      text: `تقدر تتواصل مع ${this.profile.faceBook || 'الشخص'} عن طريق:
-  📱     Mobile: ${this.profile.mobile1}
-  📧    Email: ${this.profile.email}`,
-        url: window.location.href, // أو رابط ثابت للصفحة
+      title: "My Digital Profile",
+      text: textToShare,       // ✅ all info goes here
+      //url: window.location.href 
     };
 
     if (navigator.share) {
       navigator
         .share(shareData)
-        .then(() => console.log('Shared successfully'))
-        .catch((error) => console.error('Error sharing', error));
+        .then(() => console.log("Shared successfully"))
+        .catch((error) => console.error("Error sharing", error));
     } else {
       // fallback لو المتصفح مش بيدعم share
-      const dummy = document.createElement('textarea');
-      dummy.value = `${shareData.text}\n${shareData.url}`;
+      const dummy = document.createElement("textarea");
+      dummy.value = textToShare;
       document.body.appendChild(dummy);
       dummy.select();
-      document.execCommand('copy');
+      document.execCommand("copy");
       document.body.removeChild(dummy);
-      alert('تم نسخ رابط المشاركة 👍');
+      alert("تم نسخ البيانات 👍");
     }
   }
+
 }
