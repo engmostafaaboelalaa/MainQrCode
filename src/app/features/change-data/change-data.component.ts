@@ -44,6 +44,8 @@ export class ChangeDataComponent extends BaseComponent implements OnInit {
       Instagram: [''],
       TikTok: [''],
       Email: [''],
+      Password: [''],
+      ConfirmPassword: [''],
     });
   }
   currentId: string | null = null;
@@ -78,6 +80,11 @@ export class ChangeDataComponent extends BaseComponent implements OnInit {
               TikTok: res.tikTok || '',
               Email: res.email || '',
             });
+            const passwordControl = this.clientForm.get('Password');
+            const confirmPasswordControl =
+              this.clientForm.get('ConfirmPassword');
+            passwordControl?.disable();
+            confirmPasswordControl?.disable();
           }
         },
         error: (err) => {
@@ -140,5 +147,21 @@ export class ChangeDataComponent extends BaseComponent implements OnInit {
           });
         },
       });
+  }
+
+  ActiveChangePassword: boolean = false;
+  onShowChangePassword() {
+    this.ActiveChangePassword = !this.ActiveChangePassword;
+
+    const passwordControl = this.clientForm.get('Password');
+    const confirmPasswordControl = this.clientForm.get('ConfirmPassword');
+
+    if (this.ActiveChangePassword) {
+      passwordControl?.enable();
+      confirmPasswordControl?.enable();
+    } else {
+      passwordControl?.disable();
+      confirmPasswordControl?.disable();
+    }
   }
 }
