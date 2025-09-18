@@ -142,7 +142,7 @@ export class ProfileComponent extends BaseComponent implements OnInit {
   openWhatsApp(number: string | null | undefined) {
     if (number) {
       const cleanNumber = number.replace(/\D/g, '');
-      window.open(`https://wa.me/${cleanNumber}`, '_blank');
+      window.open(`https://wa.me/+20${cleanNumber}`, '_blank');
     }
   }
 
@@ -156,14 +156,14 @@ export class ProfileComponent extends BaseComponent implements OnInit {
   // Open Instagram
   openInstagram(username: string | null | undefined) {
     if (username) {
-      window.open(`https://instagram.com/${username}`, '_blank');
+      window.open(`${username}`, '_blank');
     }
   }
 
   // Open TikTok
   openTikTok(username: string | null | undefined) {
     if (username) {
-      window.open(`https://www.tiktok.com/@${username}`, '_blank');
+      window.open(`${username}`, '_blank');
     }
   }
 

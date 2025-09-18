@@ -36,7 +36,7 @@
                     <i class="bi bi-whatsapp text-success"></i>
                 </button>
 
-                <button type="button" class="btn btn-light rounded-circle shadow-sm p-3 child" [disabled]="!profile.faceBook" (click)="openWhatsApp(profile.faceBook)">
+                <button type="button" class="btn btn-light rounded-circle shadow-sm p-3 child" [disabled]="!profile.faceBook" (click)="openFacebook(profile.faceBook)">
                      <i class="bi bi-facebook text-primary"></i>
                 </button>
 
@@ -44,19 +44,11 @@
                     <i class="bi bi-telephone text-success"></i>
                 </button>
 
-                <button type="button" class="btn btn-light rounded-circle shadow-sm p-3 child" [class.disabled]="!profile.tikTok" (click)="callMobile(profile.tikTok)">
+                <button type="button" class="btn btn-light rounded-circle shadow-sm p-3 child" [class.disabled]="!profile.tikTok" (click)="openTikTok(profile.tikTok)">
                     <i class="bi bi-tiktok text-black"></i>
                 </button>
 
-                <button type="button" class="btn btn-light rounded-circle shadow-sm p-3 child">
-                    <i class="fab fa-linkedin text-primary"></i>
-                </button>
-
-                <button type="button" class="btn btn-light rounded-circle shadow-sm p-3 child">
-                    <i class="bi bi-twitter text-primary"></i>
-                </button>
-
-                <button type="button" class="btn btn-light rounded-circle shadow-sm p-3 child" [class.disabled]="!profile.instagram" (click)="callMobile(profile.instagram)">
+                <button type="button" class="btn btn-light rounded-circle shadow-sm p-3 child" [class.disabled]="!profile.instagram" (click)="openInstagram(profile.instagram)">
                      <i class="bi bi-instagram text-danger"></i>
                 </button>
             </div>
