@@ -43,7 +43,7 @@ export class ProfileComponent extends BaseComponent implements OnInit {
             //'user/:current_user_id/user-form/:update_id'
             if(this.profile.firstTime){
               console.log('mosdtafa')
-              const productId = this.route.snapshot.paramMap.get('update_id')
+              const productId = this.route.snapshot.paramMap.get('product_id')
               this.router.navigate([`/user/${this.currentId}/user-form/${productId}`]);
             }else{
               return
@@ -71,7 +71,8 @@ export class ProfileComponent extends BaseComponent implements OnInit {
          cancelButtonText: 'الغاء',
        }).then((result) => {
          if (result.isConfirmed) {
-           this.router.navigate(['user', this.currentId, 'user-form']);
+           const  productId = this.route.snapshot.paramMap.get('product_id')
+           this.router.navigate(['user', this.currentId, 'user-form' ]);
          }
        });
      }
