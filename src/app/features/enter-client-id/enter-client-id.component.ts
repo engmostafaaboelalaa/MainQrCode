@@ -10,41 +10,40 @@ import Swal from 'sweetalert2';
 })
 export class EnterClientIdComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute) {}
-  currentId: string | null = null;
+  currentUserId: string | null = null;
+  productId!: string | null;
 
   ngOnInit(): void {
-    this.currentId = this.route.snapshot.paramMap.get('current_user_id');
+    this.currentUserId = this.route.snapshot.paramMap.get('current_user_id');
+    this.productId =  this.route.snapshot.paramMap.get('product_id');
     this.askForClientId();
   }
 
   async askForClientId() {
     const {
-      value: clientId,
+      value: password,
       isConfirmed,
       isDismissed,
     } = await Swal.fire({
-      title: 'يرجى إدخال الرقم التعريفي',
+      title: 'يرجى إدخال كلمة السر',
       input: 'text',
-      inputPlaceholder: 'الرقم التعريفي',
+      inputPlaceholder: ' كلمة السر',
       showCancelButton: true,
       confirmButtonText: 'متابعة',
       cancelButtonText: 'إلغاء',
       inputValidator: (value) => {
         if (!value) {
-          return 'يجب إدخال رقم الكود!';
-        }
-        if (!/^[0-9]+$/.test(value)) {
-          return 'رقم الكود يجب أن يكون أرقام فقط!';
+          return 'يجب إدخال كلمة السر!';
         }
         return null;
       },
     });
 
-    if (isConfirmed && clientId) {
-      this.router.navigate(['user', this.currentId, 'user-form', clientId]);
+    if (isConfirmed && password) {
+      this.router.navigate(['user', this.currentUserId, 'user-form', this.productId  ]);
     } else if (isDismissed) {
       // لو عمل إلغاء → يرجع على الهوم
-      this.router.navigate(['user', this.currentId]);
+      this.router.navigate(['user', this.currentUserId]);
     }
   }
 }

@@ -13,31 +13,12 @@ export const routes: Routes = [
       import('./features/home/home.component').then((m) => m.HomeComponent),
   },
   {
-    path: 'user/:current_user_id',
-    loadComponent: () =>
-      import('./features/home/home.component').then((m) => m.HomeComponent),
-  },
-  {
     path: 'No-clientId',
     loadComponent: () =>
       import('./features/no-data/no-data.component').then((m) => m.NoDataComponent),
   },
   {
-    path: 'user/:current_user_id/user-form',
-    loadComponent: () =>
-      import('./features/enter-client-id/enter-client-id.component').then(
-        (m) => m.EnterClientIdComponent
-      ),
-  },
-  {
-    path: 'user/:current_user_id/user-form/:update_id',
-    loadComponent: () =>
-      import('./features/change-data/change-data.component').then(
-        (m) => m.ChangeDataComponent
-      ),
-  },
-  {
-    path: 'user-form',
+    path: 'profile/:current_user_id/user-form/:product_id',
     loadComponent: () =>
       import('./features/change-data/change-data.component').then(
         (m) => m.ChangeDataComponent
@@ -51,7 +32,7 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'profile',
+    path: 'profile/:current_user_id',
     loadComponent: () =>
       import('./features/profile/profile.component').then(
         (m) => m.ProfileComponent

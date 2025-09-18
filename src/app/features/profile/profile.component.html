@@ -5,13 +5,16 @@
             <!-- Profile Logo -->
             <div class="mx-auto mb-3">
                 <div class="rounded-circle bg-light d-flex justify-content-center align-items-center" style="width: 120px; height: 120px; border: 2px solid #eee;">
-                    <img src="/images/lion.svg" class="img-fluid rounded-circle" alt="logo" />
+                    <img *ngIf="profile?.image; else noImg" [src]="basUrl  + profile.image" alt="Profile Image" class="rounded-circle shadow" width="150" height="150" style="object-fit: cover;">
+                    <ng-template #noImg>
+                        <i class="bi bi-person-circle text-secondary" style="font-size: 60px;"></i>
+                    </ng-template>
                 </div>
             </div>
 
             <!-- Name & Role -->
-            <h5 class="fw-bold mb-1">Mostafa Mohammed</h5>
-            <p class="text-muted small mb-3">Commercial Photographer</p>
+            <h5 class="fw-bold mb-1">{{profile.email}}</h5>
+            <p class="text-muted small mb-3">{{profile.jop}}</p>
 
 
             <!-- <div class="pt-4 pb-4 border-bottom border-top mb-4 w-100 d-flex justify-content-center align-items-center">
@@ -20,37 +23,49 @@
 
             <!-- Social Icons -->
             <div class="d-flex justify-content-center flex-wrap gap-3 border-top border-bottom border-gray-400 p-3">
-                <a class="btn btn-light rounded-circle shadow-sm p-3 child">
-                    <i class="bi bi-youtube text-danger"></i>
-                </a>
-                <a class="btn btn-light rounded-circle shadow-sm p-3 child">
+                <!-- <button type="button" class="btn rounded-circle shadow-sm p-3 child" [disabled]="false" [ngClass]="{ 
+                        'btn-light': profile.whatsApp,     
+                        'btn-secondary': !profile.whatsApp 
+                        }">
+                   <i class="bi bi-youtube text-danger"></i>
+                </button> -->
+                <button type="button" class="btn btn-light rounded-circle shadow-sm p-3 child" [disabled]="!profile.whatsApp" [ngClass]="{ 
+                        'btn-light': profile.whatsApp,     
+                        'btn-secondary': !profile.whatsApp 
+                        }" (click)="openWhatsApp(profile.whatsApp)">
                     <i class="bi bi-whatsapp text-success"></i>
-                </a>
-                <a class="btn btn-light rounded-circle shadow-sm p-3 child">
-                    <i class="bi bi-facebook text-primary"></i>
-                </a>
-                <a class="btn btn-light rounded-circle shadow-sm p-3 child">
+                </button>
+
+                <button type="button" class="btn btn-light rounded-circle shadow-sm p-3 child" [disabled]="!profile.faceBook" (click)="openWhatsApp(profile.faceBook)">
+                     <i class="bi bi-facebook text-primary"></i>
+                </button>
+
+                <button type="button" class="btn btn-light rounded-circle shadow-sm p-3 child" [class.disabled]="!profile.mobile1" (click)="callMobile(profile.mobile1)">
                     <i class="bi bi-telephone text-success"></i>
-                </a>
-                <a class="btn btn-light rounded-circle shadow-sm p-3 child">
+                </button>
+
+                <button type="button" class="btn btn-light rounded-circle shadow-sm p-3 child" [class.disabled]="!profile.tikTok" (click)="callMobile(profile.tikTok)">
                     <i class="bi bi-tiktok text-black"></i>
-                </a>
-                <a class="btn btn-light rounded-circle shadow-sm p-3 child">
+                </button>
+
+                <button type="button" class="btn btn-light rounded-circle shadow-sm p-3 child">
                     <i class="fab fa-linkedin text-primary"></i>
-                </a>
-                <a class="btn btn-light rounded-circle shadow-sm p-3 child">
+                </button>
+
+                <button type="button" class="btn btn-light rounded-circle shadow-sm p-3 child">
                     <i class="bi bi-twitter text-primary"></i>
-                </a>
-                <a class="btn btn-light rounded-circle shadow-sm p-3 child">
-                    <i class="bi bi-instagram text-danger"></i>
-                </a>
+                </button>
+
+                <button type="button" class="btn btn-light rounded-circle shadow-sm p-3 child" [class.disabled]="!profile.instagram" (click)="callMobile(profile.instagram)">
+                     <i class="bi bi-instagram text-danger"></i>
+                </button>
             </div>
             <div class="pt-4 pb-4 border-bottom border-top mb-4 w-100 d-flex justify-content-center align-items-center gap-2 flex-wrap">
-                <button class="btn btn-primary rounded-pill px-4  d-flex justify-content-center  align-items-center gap-1 w-11">
+                <button class="btn btn-primary rounded-pill px-4  d-flex justify-content-center  align-items-center gap-1 w-11" (click)="shareProfile()" [disabled]="!profile.id">
                     <p class="m-0">Share</p>
                     <i class="bi bi-share-fill text-success"></i>
                 </button>
-                <button class="btn btn-primary rounded-pill px-4   d-flex gap-1 justify-content-center  align-items-center w-11">
+                <button class="btn btn-primary rounded-pill px-4   d-flex gap-1 justify-content-center  align-items-center w-11" (click)="ConfirmPopup()">
                     <p class="m-0">Edit</p>
                     <i class="bi bi-pencil-fill text-success"></i>
                 </button>
