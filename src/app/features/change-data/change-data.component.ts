@@ -138,11 +138,13 @@ export class ChangeDataComponent extends BaseComponent implements OnInit {
         },
         error: (err) => {
           this.button_loading = false;
-
+          const errorMsg = err.error
+            ? err.error
+            : `حصل خطأ أثناء حفظ البيانات، حاول مرة أخرى `;
           Swal.fire({
             icon: 'error',
             title: '❌ خطأ',
-            text: 'حصل خطأ أثناء حفظ البيانات، حاول مرة أخرى',
+            text: errorMsg,
             confirmButtonText: 'تمام',
           });
         },
