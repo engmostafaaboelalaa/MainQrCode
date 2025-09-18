@@ -15,72 +15,6 @@ import { environment } from '../../environment/environment';
   styleUrl: './profile.component.css',
 })
 export class ProfileComponent extends BaseComponent implements OnInit {
-<<<<<<< HEAD
-    currentId: string | null = null;
-     profile!: Client;
-     basUrl:string = environment.base;
-     constructor(
-       private _ClientService: ClientService,
-       private router: Router,
-       private route: ActivatedRoute
-     ) {
-       super();
-       this.currentId = this.route.snapshot.paramMap.get('current_user_id');
-       if(!this.currentId){
-         this.router.navigateByUrl('No-clientId'); 
-       }
-     }
-     ngOnInit(): void {
-       this.onGetClientData(this.currentId);
-     }
-     onGetClientData(client_id: any) {
-       this._ClientService
-         .GetClientsData(client_id)
-         .pipe(takeUntil(this.destroy$))
-         .subscribe({
-           next: (res: any) => {
-             this.profile = res;
-             //this used to check if this is the first time or not if the first tie is true return redirsect to edit page else (false still in the page)
-            //'user/:current_user_id/user-form/:update_id'
-            if(this.profile.firstTime){
-              console.log('mosdtafa')
-              const productId = this.route.snapshot.paramMap.get('product_id')
-              this.router.navigate([`/user/${this.currentId}/user-form/${productId}`]);
-            }else{
-              return
-            }
-           },
-         });
-     }
-     showSuccessAlert() {
-       Swal.fire({
-         title: 'تم الحفظ بنجاح',
-         text: 'تم إضافة البيانات إلى جهات الاتصال',
-         icon: 'success',
-         confirmButtonText: 'تم',
-       });
-     }
-     ConfirmPopup() {
-       Swal.fire({
-         title: 'هل ترغب في إعادة إدخال بياناتك؟',
-         text: 'سيتم تحويلك إلى صفحة التسجيل لإدخال البيانات مرة أخرى.',
-         icon: 'question',
-         showCancelButton: true,
-         confirmButtonColor: '#3085d6',
-         cancelButtonColor: '#d33',
-         confirmButtonText: 'نعم',
-         cancelButtonText: 'الغاء',
-       }).then((result) => {
-         if (result.isConfirmed) {
-           const  productId = this.route.snapshot.paramMap.get('product_id')
-           this.router.navigate(['user', this.currentId, 'user-form' ]);
-         }
-       });
-     }
-     openPromo() {
-       Swal.fire({
-         html: `
-=======
   currentId: string | null = null;
   profile!: Client;
   basUrl: string = environment.base;
@@ -146,7 +80,6 @@ export class ProfileComponent extends BaseComponent implements OnInit {
   openPromo() {
     Swal.fire({
       html: `
->>>>>>> d14bcc36731a83d7bd27329b3125a2b353851fa5
            <div class="promo-popup" dir="rtl">
              <h2>👉 خليك ديجيتال 👈</h2>
              <p>امتلك صفحتك الرقمية الآن بخصم</p>

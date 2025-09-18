@@ -7,6 +7,13 @@ export const routes: Routes = [
     redirectTo: 'No-clientId',
     pathMatch: 'full',
   },
+  {
+    path: 'No-clientId',
+    loadComponent: () =>
+      import('./features/no-data/no-data.component').then(
+        (m) => m.NoDataComponent
+      ),
+  },
   // Home
   {
     path: 'profile/:current_user_id',
@@ -40,16 +47,5 @@ export const routes: Routes = [
         (m) => m.QrImageComponent
       ),
   },
-  {
-    path: 'No-clientId',
-    loadComponent: () =>
-      import('./features/no-data/no-data.component').then(
-        (m) => m.NoDataComponent
-      ),
-  },
-  // {
-  //   path: 'user/:current_user_id',
-  //   loadComponent: () =>
-  //     import('./features/home/home.component').then((m) => m.HomeComponent),
-  // },
+  
 ];
