@@ -5,7 +5,7 @@
 
                 <!-- صورة المستخدم -->
                 <div class="mb-3">
-                    <img *ngIf="profile?.image; else noImg" [src]="basUrl  + profile?.image" alt="Profile Image" class="rounded-circle shadow" width="150" height="150" style="object-fit: cover;">
+                    <img *ngIf="profile.image; else noImg" [src]="basUrl  + profile.image" alt="Profile Image" class="rounded-circle shadow" width="150" height="150" style="object-fit: cover;">
                     <ng-template #noImg>
                         <i class="bi bi-person-circle text-secondary" style="font-size: 60px;"></i>
                     </ng-template>
@@ -14,7 +14,7 @@
 
             <div class="content mb-5">
                 <!-- 1. Mobile -->
-                <div class="contact w-100 p-3  d-flex gap-3 btn-custom" [class.disabled]="!profile?.mobile1" (click)="callMobile(profile?.mobile1)">
+                <div class="contact w-100 p-3  d-flex gap-3 btn-custom" [class.disabled]="!profile.mobile1" (click)="callMobile(profile.mobile1)">
                     <div class="image">
                         <a class="btn btn-light rounded-circle shadow-sm ">
                             <i class="bi bi-phone-fill text-success"></i>
@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <!-- 2. Telephone -->
-                <div class="contact w-100 p-3  d-flex gap-3 btn-custom" [class.disabled]="!profile?.mobile2" (click)="callTelephone(profile?.mobile2)">
+                <div class="contact w-100 p-3  d-flex gap-3 btn-custom" [class.disabled]="!profile.mobile2" (click)="callTelephone(profile.mobile2)">
                     <div class="image">
                         <a class="btn btn-light rounded-circle shadow-sm ">
                             <i class="bi bi-telephone-fill text-primary"></i>
@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <!-- 3. WhatsApp -->
-                <div class="contact w-100 p-3  d-flex gap-3 btn-custom" [class.disabled]="!profile?.whatsApp" (click)="openWhatsApp(profile?.whatsApp)">
+                <div class="contact w-100 p-3  d-flex gap-3 btn-custom" [class.disabled]="!profile.whatsApp" (click)="openWhatsApp(profile.whatsApp)">
                     <div class="image">
                         <a class="btn btn-light rounded-circle shadow-sm ">
                             <i class="bi bi-whatsapp text-success"></i>
@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <!-- 4. Facebook -->
-                <div class="contact w-100 p-3  d-flex gap-3 btn-custom" [class.disabled]="!profile?.faceBook" (click)="openFacebook(profile?.faceBook)">
+                <div class="contact w-100 p-3  d-flex gap-3 btn-custom" [class.disabled]="!profile.faceBook" (click)="openFacebook(profile.faceBook)">
                     <div class="image">
                         <a class="btn btn-light rounded-circle shadow-sm ">
                             <i class="bi bi-facebook text-primary"></i>
@@ -62,7 +62,7 @@
                     </div>
                 </div>
                 <!-- 5. Instagram -->
-                <div class="contact w-100 p-3  d-flex gap-3 btn-custom" [class.disabled]="!profile?.instagram" (click)="openInstagram(profile?.instagram)">
+                <div class="contact w-100 p-3  d-flex gap-3 btn-custom" [class.disabled]="!profile.instagram" (click)="openInstagram(profile.instagram)">
                     <div class="image">
                         <a class="btn btn-light rounded-circle shadow-sm ">
                             <i class="bi bi-instagram text-danger"></i>
@@ -74,7 +74,7 @@
                     </div>
                 </div>
                 <!-- 6. TikTok -->
-                <div class="contact w-100 p-3  d-flex gap-3 btn-custom" [class.disabled]="!profile?.tikTok" (click)="openTikTok(profile?.tikTok)">
+                <div class="contact w-100 p-3  d-flex gap-3 btn-custom" [class.disabled]="!profile.tikTok" (click)="openTikTok(profile.tikTok)">
                     <div class="image">
                         <a class="btn btn-light rounded-circle shadow-sm ">
                             <i class="bi bi-tiktok text-dark"></i>
@@ -86,7 +86,7 @@
                     </div>
                 </div>
                 <!-- 7. Email -->
-                <div class="contact w-100 p-3  d-flex gap-3 btn-custom" [class.disabled]="!profile?.email" (click)="sendEmail(profile?.email)">
+                <div class="contact w-100 p-3  d-flex gap-3 btn-custom" [class.disabled]="!profile.email" (click)="sendEmail(profile.email)">
                     <div class="image">
                         <a class="btn btn-light rounded-circle shadow-sm ">
                             <i class="bi bi-envelope-fill text-danger"></i>
@@ -102,7 +102,7 @@
         <div class="row g-3 w-100 p-3 mb-4">
             <!-- home.component.html -->
             <div class="col-12 col-lg-4">
-                <button class="action_btn w-100" type="button" (click)="shareProfile()" [disabled]="!profile?.id">
+                <button class="action_btn w-100" type="button" (click)="shareProfile()" [disabled]="!profile.id">
                     مشاركة البيانات
                 </button>
             </div>

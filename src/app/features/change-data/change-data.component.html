@@ -15,7 +15,7 @@
                 <div class="main-image">
                     <div class="image">
                         <!-- Show preview if exists -->
-                        <img [src]="clientImage?.startsWith('blob:') ? clientImage : baseUrl + clientImage" alt="" *ngIf="clientImage; else noImg">
+                        <img [src]="clientImage.startsWith('blob:') ? clientImage : baseUrl + clientImage" alt="" *ngIf="clientImage; else noImg">
                         <ng-template #noImg>
                             <i class="bi bi-person-circle text-secondary" style="font-size: 60px;"></i>
                         </ng-template>
