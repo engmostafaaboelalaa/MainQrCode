@@ -50,5 +50,11 @@ export const routes: Routes = [
         (m) => m.QrImageComponent
       ),
   },
-  
+  {
+    path: 'profile',
+    loadComponent: () =>
+      import('./features/profile/profile.component').then(
+        (m) => m.ProfileComponent
+      ),
+  },
 ];
