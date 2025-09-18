@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-enter-client-id',
@@ -9,7 +10,11 @@ import Swal from 'sweetalert2';
   styleUrl: './enter-client-id.component.css',
 })
 export class EnterClientIdComponent implements OnInit {
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private _AuthService: AuthService
+  ) {}
   currentId: string | null = null;
 
   ngOnInit(): void {
@@ -41,7 +46,8 @@ export class EnterClientIdComponent implements OnInit {
     });
 
     if (isConfirmed && clientId) {
-      this.router.navigate(['user', this.currentId, 'user-form', clientId]);
+      this._AuthService.login();
+      this.router.navigate(['user', this.currentId, 'edit']);
     } else if (isDismissed) {
       // لو عمل إلغاء → يرجع على الهوم
       this.router.navigate(['user', this.currentId]);

@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -20,21 +20,24 @@ export const routes: Routes = [
   {
     path: 'No-clientId',
     loadComponent: () =>
-      import('./features/no-data/no-data.component').then((m) => m.NoDataComponent),
+      import('./features/no-data/no-data.component').then(
+        (m) => m.NoDataComponent
+      ),
   },
   {
-    path: 'user/:current_user_id/user-form',
+    path: 'user/:current_user_id/auth',
     loadComponent: () =>
       import('./features/enter-client-id/enter-client-id.component').then(
         (m) => m.EnterClientIdComponent
       ),
   },
   {
-    path: 'user/:current_user_id/user-form/:update_id',
+    path: 'user/:current_user_id/edit',
     loadComponent: () =>
       import('./features/change-data/change-data.component').then(
         (m) => m.ChangeDataComponent
       ),
+    canActivate: [authGuard],
   },
   {
     path: 'user-form',
