@@ -14,6 +14,7 @@ import { ClientService } from '../../shared/services/client.service';
 import Swal from 'sweetalert2';
 import { BaseComponent } from '../../shared/global/base/base.component';
 import { environment } from '../../environment/environment';
+import { AuthService } from '../../core/services/auth.service';
 @Component({
   selector: 'app-change-data',
   imports: [CommonModule, ReactiveFormsModule, NgIf],
@@ -22,13 +23,14 @@ import { environment } from '../../environment/environment';
 })
 export class ChangeDataComponent extends BaseComponent implements OnInit {
   clientForm: FormGroup;
-  baseUrl:string = environment.base;
-  clientImage!:string;
+  baseUrl: string = environment.base;
+  clientImage!: string;
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
+    private _AuthService: AuthService,
     private _ClientService: ClientService
   ) {
     super();
@@ -42,19 +44,19 @@ export class ChangeDataComponent extends BaseComponent implements OnInit {
       Instagram: [''],
       TikTok: [''],
       Email: [''],
+      Password: [''],
+      ConfirmPassword: [''],
     });
   }
-  updateId: string | null = null;
   currentId: string | null = null;
   mode: 'create' | 'edit' = 'create';
   button_loading: boolean = false;
   ngOnInit(): void {
-    this.updateId = this.route.snapshot.paramMap.get('product_id');
     this.currentId = this.route.snapshot.paramMap.get('current_user_id');
     console.log('Current Id: ', this.currentId);
-    if (this.updateId) {
+    if (this.currentId) {
       this.mode = 'edit';
-      this.loadClientData(this.updateId);
+      this.loadClientData(this.currentId);
     } else {
       this.mode = 'create';
     }
@@ -68,7 +70,7 @@ export class ChangeDataComponent extends BaseComponent implements OnInit {
           if (res) {
             this.clientImage = res.image;
             this.clientForm.patchValue({
-              Id: this.updateId,
+              Id: this.currentId,
               Image: res.image || '',
               Mobile1: res.mobile1 || '',
               Mobile2: res.mobile2 || '',
@@ -78,6 +80,11 @@ export class ChangeDataComponent extends BaseComponent implements OnInit {
               TikTok: res.tikTok || '',
               Email: res.email || '',
             });
+            const passwordControl = this.clientForm.get('Password');
+            const confirmPasswordControl =
+              this.clientForm.get('ConfirmPassword');
+            passwordControl?.disable();
+            confirmPasswordControl?.disable();
           }
         },
         error: (err) => {
@@ -111,7 +118,7 @@ export class ChangeDataComponent extends BaseComponent implements OnInit {
     console.log(formData);
 
     this._ClientService
-      .AddOrEditClientData(formData, this.updateId)
+      .AddOrEditClientData(formData, this.currentId)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (res) => {
@@ -124,20 +131,39 @@ export class ChangeDataComponent extends BaseComponent implements OnInit {
             confirmButtonText: 'تمام',
           }).then((result) => {
             if (result.isConfirmed) {
+              this._AuthService.logout();
               this.router.navigate(['profile', this.currentId]);
             }
           });
         },
         error: (err) => {
           this.button_loading = false;
-
+          const errorMsg = err.error
+            ? err.error
+            : `حصل خطأ أثناء حفظ البيانات، حاول مرة أخرى `;
           Swal.fire({
             icon: 'error',
             title: '❌ خطأ',
-            text: 'حصل خطأ أثناء حفظ البيانات، حاول مرة أخرى',
+            text: errorMsg,
             confirmButtonText: 'تمام',
           });
         },
       });
+  }
+
+  ActiveChangePassword: boolean = false;
+  onShowChangePassword() {
+    this.ActiveChangePassword = !this.ActiveChangePassword;
+
+    const passwordControl = this.clientForm.get('Password');
+    const confirmPasswordControl = this.clientForm.get('ConfirmPassword');
+
+    if (this.ActiveChangePassword) {
+      passwordControl?.enable();
+      confirmPasswordControl?.enable();
+    } else {
+      passwordControl?.disable();
+      confirmPasswordControl?.disable();
+    }
   }
 }
