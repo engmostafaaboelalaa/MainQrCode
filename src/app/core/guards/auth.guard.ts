@@ -7,12 +7,9 @@ export const authGuard: CanActivateFn = (route, state) => {
 
   const status = _AuthService.isAuthenticated();
   if (_AuthService.isAuthenticated()) {
-    console.log('SDD');
-
     return true;
   } else {
     console.log('Not Authenticated');
-
     return false;
   }
 };

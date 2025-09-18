@@ -20,7 +20,7 @@ export class EnterClientIdComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUserId = this.route.snapshot.paramMap.get('current_user_id');
-    this.productId =  this.route.snapshot.paramMap.get('product_id');
+    // this.productId = this.route.snapshot.paramMap.get('product_id');
     this.askForClientId();
   }
 
@@ -45,10 +45,12 @@ export class EnterClientIdComponent implements OnInit {
     });
 
     if (isConfirmed && password) {
-      this.router.navigate(['user', this.currentUserId, 'user-form', this.productId  ]);
+      this.router.navigate(['profile', this.currentUserId, 'edit']);
     } else if (isDismissed) {
       // لو عمل إلغاء → يرجع على الهوم
-      this.router.navigate(['user', this.currentUserId]);
+      console.log('dsadssa');
+
+      this.router.navigate(['profile', this.currentUserId]);
     }
   }
 }
