@@ -1,131 +1,109 @@
 <div class="container">
-  <div class="form-container">
-    <div class="text-center fs-1 text-white">تسجيل البيانات</div>
+    <div class="form-container">
+        <div class="text-center fs-1 text-white">تسجيل البيانات</div>
 
-    <!-- اربط الفورم -->
-    <form class="mt-2 pt-2" [formGroup]="clientForm" (ngSubmit)="onSubmit()">
-      <!-- رقم الكود -->
-      <div class="form-group mb-3" *ngIf="currentId">
-        <input type="text" class="form-control" id="code" formControlName="Id" [disabled]="true"
-          placeholder="رقم الكود">
-      </div>
-      <!-- الصورة -->
-      <div class="mb-3">
-        <label for="formFile" class="form-label">الصورة</label>
-        <input class="form-control m-1" type="file" id="formFile" (change)="onFileSelected($event)">
-        <div class="main-image">
-          <div class="image">
-            <!-- Show preview if exists -->
-            <img [src]="clientImage.startsWith('blob:') ? clientImage : baseUrl + clientImage" alt=""
-              *ngIf="clientImage; else noImg">
-            <ng-template #noImg>
-              <i class="bi bi-person-circle text-secondary" style="font-size: 60px;"></i>
-            </ng-template>
-          </div>
-        </div>
-      </div>
-      <!-- رقم الهاتف -->
-      <div class="form-group mb-3">
-        <label for="mobile" class="form-label">رقم الهاتف</label>
-        <div class="input-group">
-          <input type="text" class="form-control" id="mobile" formControlName="Mobile1" placeholder="أدخل رقم الهاتف">
-        </div>
-      </div>
-      <div class="form-group mb-3">
-        <label for="mobile" class="form-label">رقم الهاتف الاضافي</label>
-        <div class="input-group">
-          <input type="text" class="form-control" id="mobile" formControlName="Mobile2" placeholder="أدخل رقم الهاتف">
-        </div>
-      </div>
-      <!-- رقم الهاتف -->
-      <div class="form-group mb-3">
-        <label for="mobile" class="form-label">رقم الهاتف</label>
-        <div class="input-group">
-          <input type="text" class="form-control" id="mobile" formControlName="Mobile1" placeholder="أدخل رقم الهاتف">
-        </div>
-      </div>
-      <div class="form-group mb-3">
-        <label for="mobile" class="form-label">رقم الهاتف الاضافي</label>
-        <div class="input-group">
-          <input type="text" class="form-control" id="mobile" formControlName="Mobile2" placeholder="أدخل رقم الهاتف">
-        </div>
-      </div>
-      <!-- رقم واتساب -->
-      <div class="form-group mb-3">
-        <label for="whatsapp" class="form-label">رقم الواتساب</label>
-        <div class="input-group">
-          <input type="text" class="form-control" id="whatsapp" formControlName="WhatsApp"
-            placeholder="أدخل رقم واتساب">
-        </div>
-      </div>
+        <!-- اربط الفورم -->
+        <form class="mt-2 pt-2" [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+            <!-- رقم الكود -->
+            <div class="form-group mb-3" *ngIf="currentId">
+                <input type="text" class="form-control" id="code" formControlName="Id" [disabled]="true" placeholder="رقم الكود">
+            </div>
+            <!-- الصورة -->
+            <div class="mb-3">
+                <label for="formFile" class="form-label">الصورة</label>
+                <input class="form-control m-1" type="file" id="formFile" (change)="onFileSelected($event)">
+                <div class="main-image">
+                    <div class="image">
+                        <!-- Show preview if exists -->
+                        <img [src]="clientImage.startsWith('blob:') ? clientImage : baseUrl + clientImage" alt="" *ngIf="clientImage; else noImg">
+                        <ng-template #noImg>
+                            <i class="bi bi-person-circle text-secondary" style="font-size: 60px;"></i>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
 
-      <!-- البريد الإلكتروني -->
-      <div class="form-group mb-3">
-        <label for="email" class="form-label">البريد الإلكتروني</label>
-        <input type="email" class="form-control" id="email" formControlName="Email" placeholder="example@domain.com">
-      </div>
+            <!-- رقم الهاتف -->
+            <div class="form-group mb-3">
+                <label for="mobile" class="form-label">رقم الهاتف</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="mobile" formControlName="Mobile1" placeholder="أدخل رقم الهاتف">
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label for="mobile" class="form-label">رقم الهاتف الاضافي</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="mobile" formControlName="Mobile2" placeholder="أدخل رقم الهاتف">
+                </div>
+            </div>
+            <!-- رقم واتساب -->
+            <div class="form-group mb-3">
+                <label for="whatsapp" class="form-label">رقم الواتساب</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="whatsapp" formControlName="WhatsApp" placeholder="أدخل رقم واتساب">
+                </div>
+            </div>
 
-      <div class="form-group mb-3">
-        <div class="d-flex flex-row gap-3 mb-2">
-          <label for="password" class="form-label">كلمة المرور</label>
+            <!-- البريد الإلكتروني -->
+            <div class="form-group mb-3">
+                <label for="email" class="form-label">البريد الإلكتروني</label>
+                <input type="email" class="form-control" id="email" formControlName="Email" placeholder="example@domain.com">
+            </div>
 
-          <button type="button" *ngIf="!ActiveChangePassword" class="change_password_toggle"
-            (click)="onShowChangePassword()">
+            <div class="form-group mb-3">
+                <div class="d-flex flex-row gap-3 mb-2">
+                    <label for="password" class="form-label">كلمة المرور</label>
+
+                    <button type="button" *ngIf="!ActiveChangePassword" class="change_password_toggle" (click)="onShowChangePassword()">
             <img width="16px" src="assets/edit_icon.svg" alt="edit_icon">Change
           </button>
-          <button type="button" *ngIf="ActiveChangePassword" class="change_password_toggle cancel"
-            (click)="onShowChangePassword()">
+                    <button type="button" *ngIf="ActiveChangePassword" class="change_password_toggle cancel" (click)="onShowChangePassword()">
             <img width="18px" src="assets/cancel_icon.svg" alt="cancel_icon">Cancel
           </button>
-        </div>
-        <input type="password" class="form-control" id="password" formControlName="Password"
-          placeholder="ادخل كلمة المرور">
-      </div>
-      <div class="form-group mb-3">
-        <label for="confirm_password" class="form-label">تأكيد كلمة المرور</label>
-        <input type="confirm_password" class="form-control" id="confirm_password" formControlName="ConfirmPassword"
-          placeholder="ادخل كلمة المرور">
-      </div>
+                </div>
+                <input type="password" class="form-control" id="password" formControlName="Password" placeholder="ادخل كلمة المرور">
+            </div>
+            <div class="form-group mb-3">
+                <label for="confirm_password" class="form-label">تأكيد كلمة المرور</label>
+                <input type="confirm_password" class="form-control" id="confirm_password" formControlName="ConfirmPassword" placeholder="ادخل كلمة المرور">
+            </div>
 
-      <!-- رابط فيسبوك -->
-      <div class="form-group mb-3">
-        <label for="facebook" class="form-label">رابط فيسبوك</label>
-        <div class="input-group">
-          <input type="text" class="form-control account" id="facebook" formControlName="FaceBook"
-            aria-describedby="facebook-addon">
-          <span class="input-group-text left_radius" id="facebook-addon">https://www.facebook.com/</span>
-        </div>
-      </div>
+            <!-- رابط فيسبوك -->
+            <div class="form-group mb-3">
+                <label for="facebook" class="form-label">رابط فيسبوك</label>
+                <div class="input-group">
+                    <input type="text" class="form-control account" id="facebook" formControlName="FaceBook" aria-describedby="facebook-addon">
+                    <span class="input-group-text left_radius" id="facebook-addon">https://www.facebook.com/</span>
+                </div>
+            </div>
 
-      <!-- رابط إنستجرام -->
-      <div class="form-group mb-3">
-        <label for="instagram" class="form-label">رابط إنستجرام</label>
-        <div class="input-group">
-          <input type="text" class="form-control account" id="instagram" formControlName="Instagram"
-            aria-describedby="instagram-addon">
-          <span class="input-group-text left_radius" id="instagram-addon">https://www.instagram.com/</span>
-        </div>
-      </div>
+            <!-- رابط إنستجرام -->
+            <div class="form-group mb-3">
+                <label for="instagram" class="form-label">رابط إنستجرام</label>
+                <div class="input-group">
+                    <input type="text" class="form-control account" id="instagram" formControlName="Instagram" aria-describedby="instagram-addon">
+                    <span class="input-group-text left_radius" id="instagram-addon">https://www.instagram.com/</span>
+                </div>
+            </div>
 
-      <!-- رابط تيك توك -->
-      <div class="form-group mb-3">
-        <label for="tiktok" class="form-label">رابط تيك توك</label>
-        <div class="input-group">
-          <input type="text" class="form-control account" id="tiktok" formControlName="TikTok"
-            aria-describedby="tiktok-addon">
-          <span class="input-group-text left_radius" id="tiktok-addon">https://www.tiktok.com/&#64;</span>
-        </div>
-      </div>
-      <!-- زر التسجيل -->
-      <div class="d-grid">
-        <button type="submit" class="btn btn-submit" *ngIf="!button_loading; else loadingButton">تسجيل</button>
-        <ng-template #loadingButton>
-          <button class="btn btn-submit" type="button" disabled>
+            <!-- رابط تيك توك -->
+            <div class="form-group mb-3">
+                <label for="tiktok" class="form-label">رابط تيك توك</label>
+                <div class="input-group">
+                    <input type="text" class="form-control account" id="tiktok" formControlName="TikTok" aria-describedby="tiktok-addon">
+                    <span class="input-group-text left_radius" id="tiktok-addon">https://www.tiktok.com/&#64;</span>
+                </div>
+            </div>
+            <!-- زر التسجيل -->
+            <div class="d-grid">
+                <button type="submit" class="btn btn-submit" *ngIf="!button_loading; else loadingButton">تسجيل</button>
+                <ng-template #loadingButton>
+                    <button class="btn btn-submit" type="button" disabled>
             يتم التسجيل...
             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
           </button>
-        </ng-template>
-      </div>
-    </form>
-  </div>
+                </ng-template>
+            </div>
+        </form>
+    </div>
 </div>
