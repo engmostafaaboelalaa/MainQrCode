@@ -22,8 +22,8 @@ import { environment } from '../../environment/environment';
 })
 export class ChangeDataComponent extends BaseComponent implements OnInit {
   clientForm: FormGroup;
-  baseUrl:string = environment.base;
-  clientImage!:string;
+  baseUrl: string = environment.base;
+  clientImage!: string;
 
   constructor(
     private fb: FormBuilder,
@@ -44,17 +44,15 @@ export class ChangeDataComponent extends BaseComponent implements OnInit {
       Email: [''],
     });
   }
-  updateId: string | null = null;
   currentId: string | null = null;
   mode: 'create' | 'edit' = 'create';
   button_loading: boolean = false;
   ngOnInit(): void {
-    this.updateId = this.route.snapshot.paramMap.get('product_id');
     this.currentId = this.route.snapshot.paramMap.get('current_user_id');
     console.log('Current Id: ', this.currentId);
-    if (this.updateId) {
+    if (this.currentId) {
       this.mode = 'edit';
-      this.loadClientData(this.updateId);
+      this.loadClientData(this.currentId);
     } else {
       this.mode = 'create';
     }
@@ -68,7 +66,7 @@ export class ChangeDataComponent extends BaseComponent implements OnInit {
           if (res) {
             this.clientImage = res.image;
             this.clientForm.patchValue({
-              Id: this.updateId,
+              Id: this.currentId,
               Image: res.image || '',
               Mobile1: res.mobile1 || '',
               Mobile2: res.mobile2 || '',
@@ -111,7 +109,7 @@ export class ChangeDataComponent extends BaseComponent implements OnInit {
     console.log(formData);
 
     this._ClientService
-      .AddOrEditClientData(formData, this.updateId)
+      .AddOrEditClientData(formData, this.currentId)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (res) => {

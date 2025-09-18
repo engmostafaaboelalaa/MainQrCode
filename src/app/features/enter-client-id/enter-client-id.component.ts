@@ -25,14 +25,10 @@ export class EnterClientIdComponent implements OnInit {
   }
 
   async askForClientId() {
-    const {
-      value: password,
-      isConfirmed,
-      isDismissed,
-    } = await Swal.fire({
+    const { value: password } = await Swal.fire({
       title: 'يرجى إدخال كلمة السر',
-      input: 'text',
-      inputPlaceholder: ' كلمة السر',
+      input: 'password',
+      inputPlaceholder: 'كلمة السر',
       showCancelButton: true,
       confirmButtonText: 'متابعة',
       cancelButtonText: 'إلغاء',
@@ -42,14 +38,26 @@ export class EnterClientIdComponent implements OnInit {
         }
         return null;
       },
+      preConfirm: (password) => {
+        return this._AuthService
+          .signin(this.currentUserId, password)
+          .toPromise()
+          .then((res: any) => {
+            if ((res = true)) {
+              console.log('sadasd');
+              this._AuthService.login();
+              this.router.navigate(['profile', this.currentUserId, 'edit']);
+            }
+          })
+          .catch((err) => {
+            Swal.showValidationMessage(err.error);
+          });
+      },
     });
 
-    if (isConfirmed && password) {
+    if (password) {
       this.router.navigate(['profile', this.currentUserId, 'edit']);
-    } else if (isDismissed) {
-      // لو عمل إلغاء → يرجع على الهوم
-      console.log('dsadssa');
-
+    } else {
       this.router.navigate(['profile', this.currentUserId]);
     }
   }
