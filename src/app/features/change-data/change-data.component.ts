@@ -49,7 +49,7 @@ export class ChangeDataComponent extends BaseComponent implements OnInit {
   mode: 'create' | 'edit' = 'create';
   button_loading: boolean = false;
   ngOnInit(): void {
-    this.updateId = this.route.snapshot.paramMap.get('update_id');
+    this.updateId = this.route.snapshot.paramMap.get('product_id');
     this.currentId = this.route.snapshot.paramMap.get('current_user_id');
     console.log('Current Id: ', this.currentId);
     if (this.updateId) {
@@ -124,7 +124,7 @@ export class ChangeDataComponent extends BaseComponent implements OnInit {
             confirmButtonText: 'تمام',
           }).then((result) => {
             if (result.isConfirmed) {
-              this.router.navigate(['user', this.currentId]);
+              this.router.navigate(['profile', this.currentId]);
             }
           });
         },

@@ -19,4 +19,13 @@ export interface Client {
   instagram: string | null;
   tikTok: string | null;
   email: string;
+  jop:string,
+  firstTime:string,
+  brand:brand
 }
+export interface brand{
+   image:string,
+   description:string,
+   name:string
+}
+
