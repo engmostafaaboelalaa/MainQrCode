@@ -14,6 +14,7 @@ import { ClientService } from '../../shared/services/client.service';
 import Swal from 'sweetalert2';
 import { BaseComponent } from '../../shared/global/base/base.component';
 import { environment } from '../../environment/environment';
+import { AuthService } from '../../core/services/auth.service';
 @Component({
   selector: 'app-change-data',
   imports: [CommonModule, ReactiveFormsModule, NgIf],
@@ -29,6 +30,7 @@ export class ChangeDataComponent extends BaseComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
+    private _AuthService: AuthService,
     private _ClientService: ClientService
   ) {
     super();
@@ -122,6 +124,7 @@ export class ChangeDataComponent extends BaseComponent implements OnInit {
             confirmButtonText: 'تمام',
           }).then((result) => {
             if (result.isConfirmed) {
+              this._AuthService.logout();
               this.router.navigate(['profile', this.currentId]);
             }
           });
