@@ -155,6 +155,7 @@ export class ProfileComponent extends BaseComponent implements OnInit {
 
   // Open Instagram
   openInstagram(username: string | null | undefined) {
+    console.log(username)
     if (username) {
       window.open(`${username}`, '_blank');
     }

@@ -37,7 +37,7 @@ export const routes: Routes = [
       import('./features/change-data/change-data.component').then(
         (m) => m.ChangeDataComponent
       ),
-    canActivate: [authGuard],
+    // canActivate: [authGuard],
   },
 
   {

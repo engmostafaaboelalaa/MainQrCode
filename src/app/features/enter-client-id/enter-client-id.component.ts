@@ -33,6 +33,7 @@ export class EnterClientIdComponent implements OnInit {
       confirmButtonText: 'متابعة',
       cancelButtonText: 'إلغاء',
       inputValidator: (value) => {
+        console.log(value)
         if (!value) {
           return 'يجب إدخال كلمة السر!';
         }
